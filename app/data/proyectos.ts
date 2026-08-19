@@ -38,6 +38,8 @@ export type Proyecto = {
   proposito: string;
   /** Descripción recortada que se muestra en la tarjeta del home. */
   resumen: string;
+  /** Portada del proyecto, en public/imagenes/proyectos/ */
+  imagen?: string;
   tags: string[];
   estado: "publicado" | "en-preparacion";
 
@@ -86,6 +88,7 @@ export const proyectos: Proyecto[] = [
   /* ─────────────────────────────────────────────────────────── */
   {
     slug: "cafe",
+    imagen: "/imagenes/proyectos/cafe.jpg",
     nombre: "Café de Costa Rica",
     proposito: "Trazabilidad y sostenibilidad para fortalecer su competitividad.",
     resumen:
@@ -234,6 +237,7 @@ export const proyectos: Proyecto[] = [
   /* ─────────────────────────────────────────────────────────── */
   {
     slug: "biometano",
+    imagen: "/imagenes/proyectos/biometano.jpg",
     nombre: "Biometano",
     proposito: "Convertir residuos en una oportunidad para la transición energética.",
     resumen:
@@ -318,6 +322,7 @@ export const proyectos: Proyecto[] = [
   /* ─────────────────────────────────────────────────────────── */
   {
     slug: "construccion-circular",
+    imagen: "/imagenes/proyectos/construccion-circular.jpg",
     nombre: "Construcción circular",
     proposito: "Construir también es una oportunidad para transformar.",
     resumen:
@@ -393,6 +398,7 @@ export const proyectos: Proyecto[] = [
   /* ─────────────────────────────────────────────────────────── */
   {
     slug: "costa-rica-por-siempre",
+    imagen: "/imagenes/proyectos/costa-rica-por-siempre.jpg",
     nombre: "Costa Rica por Siempre",
     proposito: "Contenido en preparación.",
     resumen: "Contenido en preparación.",
@@ -403,6 +409,7 @@ export const proyectos: Proyecto[] = [
   /* ─────────────────────────────────────────────────────────── */
   {
     slug: "conservacion-internacional",
+    imagen: "/imagenes/proyectos/conservacion-internacional.jpg",
     nombre: "Conservación Internacional",
     proposito: "Contenido en preparación.",
     resumen: "Contenido en preparación.",

@@ -2,9 +2,10 @@ import Link from "next/link";
 import type { Proyecto } from "../data/proyectos";
 import { PieDePagina } from "./pie";
 import {
+  EnPreparacion,
   Espacio,
   Etiqueta,
-  EnPreparacion,
+  Foto,
   IconoExterno,
   IconoFlechaAtras,
   Marca,
@@ -38,11 +39,23 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
       <main className="proyecto">
         {/* Cabecera */}
         <div className="proyecto__portada">
-          <Espacio
-            proporcion="21 / 9"
-            minAlto={320}
-            nota={`Fotografía de portada · ${proyecto.nombre} · horizontal, mínimo 2400 px`}
-          />
+          {proyecto.imagen ? (
+            <Foto
+              src={proyecto.imagen}
+              alt={proyecto.nombre}
+              proporcion="16 / 9"
+              encaje="contain"
+              tono="celeste"
+              tamanos="100vw"
+              prioridad
+            />
+          ) : (
+            <Espacio
+              proporcion="21 / 9"
+              minAlto={320}
+              nota={`Fotografía de portada · ${proyecto.nombre} · horizontal, mínimo 2400 px`}
+            />
+          )}
         </div>
 
         <header className="proyecto__cabecera">

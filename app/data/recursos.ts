@@ -8,6 +8,7 @@
 export type Plataforma = {
   nombre: string;
   texto: string;
+  imagen?: string;
   enlace: string;
   boton: string;
 };
@@ -15,6 +16,7 @@ export type Plataforma = {
 export type Red = {
   nombre: string;
   texto: string;
+  imagen?: string;
   enlaces: { etiqueta: string; url?: string }[];
 };
 
@@ -47,6 +49,7 @@ export const publicosOportunidad: PublicoOportunidad[] = [
 export const plataformas: Plataforma[] = [
   {
     nombre: "IA Consciente ONUDI",
+    imagen: "/imagenes/ia-consciente.jpg",
     texto:
       "Una ruta práctica para utilizar inteligencia artificial con criterio humano, propósito y conciencia sobre los recursos que hacen posible esta tecnología.",
     enlace: "https://ia-consciente-onudi.vercel.app/",
@@ -57,9 +60,13 @@ export const plataformas: Plataforma[] = [
 export const redes: Red[] = [
   {
     nombre: "Mujeres en la Industria",
+    imagen: "/imagenes/mujeres-industria.jpg",
     texto:
       "Un espacio para conectar y visibilizar la participación de mujeres en los sectores productivos y en las conversaciones sobre el futuro de la industria.",
-    enlaces: [{ etiqueta: "Conocer la red" }, { etiqueta: "Ir a Instagram" }],
+    enlaces: [
+      { etiqueta: "Conocer la red" },
+      { etiqueta: "Ir a Instagram", url: "https://www.instagram.com/onudi.cr/" },
+    ],
   },
 ];
 

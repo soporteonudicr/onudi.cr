@@ -30,6 +30,44 @@ export function Marca({
   );
 }
 
+/* ── Fotografía ──────────────────────────────────────────────── */
+
+export function Foto({
+  src,
+  alt,
+  proporcion = "16 / 9",
+  encaje = "cover",
+  encuadre = "center",
+  tamanos = "100vw",
+  prioridad = false,
+  tono,
+}: {
+  src: string;
+  alt: string;
+  proporcion?: string;
+  encaje?: "cover" | "contain";
+  encuadre?: string;
+  tamanos?: string;
+  prioridad?: boolean;
+  tono?: "celeste";
+}) {
+  return (
+    <div
+      className={`foto${tono ? ` foto--${tono}` : ""}`}
+      style={{ aspectRatio: proporcion }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={tamanos}
+        priority={prioridad}
+        style={{ objectFit: encaje, objectPosition: encuadre }}
+      />
+    </div>
+  );
+}
+
 /* ── Espacio reservado para imagen ───────────────────────────── */
 
 /**

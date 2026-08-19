@@ -1,20 +1,21 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ProgramaPais, QuienesSomos } from "./components/contenido-ventanas";
+import { PieDePagina } from "./components/pie";
 import {
-  BotonEnlace,
+  EnPreparacion,
   Espacio,
   Etiqueta,
-  EnPreparacion,
+  Foto,
   IconoExterno,
   IconoFlecha,
   Marca,
 } from "./components/ui";
-import { PieDePagina } from "./components/pie";
 import { Ventana } from "./components/ventana";
-import { actoresRuta, programaPais, rutaCooperacion } from "./data/programa-pais";
+import { programaPais, rutaCooperacion } from "./data/programa-pais";
 import { proyectos } from "./data/proyectos";
 import { oportunidades, plataformas, publicosOportunidad, redes } from "./data/recursos";
 
@@ -85,48 +86,60 @@ function Encabezado({ onConocerOnudi }: { onConocerOnudi: () => void }) {
   );
 }
 
-/* ── 01 · Hero ───────────────────────────────────────────────── */
+/* ── Hero ────────────────────────────────────────────────────── */
 
 function Hero({ onConocerOnudi }: { onConocerOnudi: () => void }) {
   return (
     <section className="hero">
       <div className="hero__imagen">
-        <Espacio
-          proporcion="21 / 9"
-          minAlto={340}
-          nota="Fotografía de portada · industria, formación, territorio o personas · horizontal, mínimo 2400 px"
+        <Foto
+          src="/imagenes/portada.jpg"
+          alt="Personas trabajando en industria, agricultura, laboratorio y energía solar en Costa Rica"
+          proporcion="16 / 9"
+          tamanos="100vw"
+          prioridad
         />
       </div>
 
       <div className="hero__texto">
-        <h1>
-          Desarrollo industrial para una Costa Rica más competitiva, inclusiva y sostenible.
-        </h1>
-        <p className="hero__destacado">
-          ONUDI es la agencia especializada de Naciones Unidas que promueve el desarrollo
-          industrial inclusivo y sostenible, y su mandato contribuye de manera central al ODS 9:
-          Industria, Innovación e Infraestructura.
-        </p>
-        <p className="hero__cuerpo">
-          Trabajamos junto a instituciones públicas, sector privado, academia, comunidades y socios
-          de cooperación para fortalecer capacidades, impulsar innovación y convertir desafíos
-          productivos en soluciones concretas.
-        </p>
-        <button type="button" className="boton boton--azul" onClick={onConocerOnudi}>
-          Conocé ONUDI
-          <IconoFlecha />
-        </button>
+        <div className="hero__columna">
+          <h1>Desarrollo industrial para una Costa Rica más competitiva, inclusiva y sostenible.</h1>
+          <p className="hero__destacado">
+            ONUDI es la agencia especializada de Naciones Unidas que promueve el desarrollo
+            industrial inclusivo y sostenible, y su mandato contribuye de manera central al ODS 9:
+            Industria, Innovación e Infraestructura.
+          </p>
+          <p className="hero__cuerpo">
+            Trabajamos junto a instituciones públicas, sector privado, academia, comunidades y
+            socios de cooperación para fortalecer capacidades, impulsar innovación y convertir
+            desafíos productivos en soluciones concretas.
+          </p>
+          <button type="button" className="boton boton--azul" onClick={onConocerOnudi}>
+            Conocé ONUDI
+            <IconoFlecha />
+          </button>
+        </div>
+
+        <div className="hero__emblema">
+          <Image
+            src="/logos/emblema-azul.png"
+            alt="Emblema de ONUDI"
+            width={470}
+            height={400}
+            priority
+          />
+        </div>
       </div>
     </section>
   );
 }
 
-/* ── 02 · Programa País ──────────────────────────────────────── */
+/* ── Programa País ───────────────────────────────────────────── */
 
 function SeccionProgramaPais({ onAbrir }: { onAbrir: () => void }) {
   return (
-    <section className="seccion nodo" id="programa-pais">
-      <div className="programa">
+    <section className="seccion" id="programa-pais">
+      <div className="programa nodo">
         <div className="programa__texto">
           <Etiqueta>Marco de cooperación</Etiqueta>
           <h2>{programaPais.titulo}</h2>
@@ -137,48 +150,42 @@ function SeccionProgramaPais({ onAbrir }: { onAbrir: () => void }) {
             <IconoFlecha />
           </button>
         </div>
-        <Espacio
-          proporcion="5 / 6"
-          nota="Fotografía o composición · Costa Rica, personas y sectores productivos · vertical"
+        <Foto
+          src={programaPais.imagen}
+          alt="¿Cómo funciona el Programa País?"
+          proporcion="4 / 5"
+          tamanos="(max-width: 900px) 100vw, 40vw"
         />
       </div>
     </section>
   );
 }
 
-/* ── 03 · Franja celeste · Ruta de la cooperación ────────────── */
+/* ── Franja celeste · Ruta de la cooperación ─────────────────── */
 
 function FranjaRuta({ onAbrir }: { onAbrir: () => void }) {
   return (
-    <section className="franja nodo" aria-labelledby="titulo-ruta">
+    <section className="franja" aria-labelledby="titulo-ruta">
       <div className="franja__interior">
-        <Etiqueta>Ruta de la cooperación</Etiqueta>
-        <h2 id="titulo-ruta" className="franja__titulo">
-          Cómo una prioridad del país se convierte en un proyecto
-        </h2>
+        <div className="franja__cabecera nodo">
+          <Etiqueta>Ruta de la cooperación</Etiqueta>
+          <h2 id="titulo-ruta" className="franja__titulo">
+            Cómo una prioridad del país se convierte en un proyecto
+          </h2>
+        </div>
 
         <ol className="ruta">
           {rutaCooperacion.map((paso, indice) => (
             <li className="ruta__paso" key={paso.etiqueta}>
+              <span className="ruta__icono">
+                <Image src={paso.icono} alt="" width={160} height={160} />
+              </span>
               <span className="ruta__indice">{String(indice + 1).padStart(2, "0")}</span>
               <h3>{paso.etiqueta}</h3>
               <p>{paso.pregunta}</p>
             </li>
           ))}
         </ol>
-
-        <div className="ruta__union" aria-hidden="true">
-          <span />
-        </div>
-
-        <div className="actores">
-          {actoresRuta.map((actor) => (
-            <article className="actor" key={actor.etiqueta}>
-              <h3>{actor.etiqueta}</h3>
-              <p>{actor.pregunta}</p>
-            </article>
-          ))}
-        </div>
 
         <button type="button" className="boton boton--blanco" onClick={onAbrir}>
           Ver cómo funciona
@@ -189,12 +196,12 @@ function FranjaRuta({ onAbrir }: { onAbrir: () => void }) {
   );
 }
 
-/* ── 04 · Proyectos ──────────────────────────────────────────── */
+/* ── Proyectos ───────────────────────────────────────────────── */
 
 function SeccionProyectos() {
   return (
-    <section className="seccion nodo" id="proyectos">
-      <div className="seccion__cabecera">
+    <section className="seccion" id="proyectos">
+      <div className="seccion__cabecera nodo">
         <Etiqueta>Proyectos</Etiqueta>
         <h2>¿Y cómo se ve todo esto en la práctica?</h2>
         <p className="seccion__lead">
@@ -203,10 +210,19 @@ function SeccionProyectos() {
         </p>
       </div>
 
-      <div className="proyectos">
+      <div className="rejilla">
         {proyectos.map((proyecto) => (
           <article className="tarjeta" key={proyecto.slug}>
-            <Espacio proporcion="3 / 2" nota={`Fotografía · ${proyecto.nombre}`} />
+            {proyecto.imagen ? (
+              <Foto
+                src={proyecto.imagen}
+                alt={proyecto.nombre}
+                proporcion="5 / 4"
+                tamanos="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 33vw"
+              />
+            ) : (
+              <Espacio proporcion="5 / 4" nota={`Fotografía · ${proyecto.nombre}`} />
+            )}
             <div className="tarjeta__cuerpo">
               <h3>{proyecto.nombre}</h3>
               {proyecto.estado === "en-preparacion" ? (
@@ -235,12 +251,12 @@ function SeccionProyectos() {
   );
 }
 
-/* ── 05 · Plataformas, redes y oportunidades ─────────────────── */
+/* ── Plataformas ─────────────────────────────────────────────── */
 
 function SeccionPlataformas() {
   return (
-    <section className="seccion nodo" id="plataformas">
-      <div className="seccion__cabecera">
+    <section className="seccion" id="plataformas">
+      <div className="seccion__cabecera nodo">
         <Etiqueta>Plataformas</Etiqueta>
         <h2>Herramientas para convertir conocimiento en acción.</h2>
         <p className="seccion__lead">
@@ -249,16 +265,33 @@ function SeccionPlataformas() {
         </p>
       </div>
 
-      <div className="fichas">
+      <div className="rejilla">
         {plataformas.map((plataforma) => (
-          <article className="ficha" key={plataforma.nombre}>
-            <Espacio proporcion="16 / 9" nota={`Imagen · ${plataforma.nombre}`} />
-            <div className="ficha__cuerpo">
+          <article className="tarjeta" key={plataforma.nombre}>
+            {plataforma.imagen ? (
+              <Foto
+                src={plataforma.imagen}
+                alt={plataforma.nombre}
+                proporcion="5 / 4"
+                encaje="contain"
+                tono="celeste"
+                tamanos="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 33vw"
+              />
+            ) : (
+              <Espacio proporcion="5 / 4" nota={`Imagen · ${plataforma.nombre}`} />
+            )}
+            <div className="tarjeta__cuerpo">
               <h3>{plataforma.nombre}</h3>
-              <p>{plataforma.texto}</p>
-              <BotonEnlace href={plataforma.enlace} tono="linea" externo>
+              <p className="tarjeta__resumen">{plataforma.texto}</p>
+              <a
+                className="tarjeta__enlace"
+                href={plataforma.enlace}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {plataforma.boton}
-              </BotonEnlace>
+                <IconoExterno />
+              </a>
             </div>
           </article>
         ))}
@@ -267,10 +300,12 @@ function SeccionPlataformas() {
   );
 }
 
+/* ── Redes ───────────────────────────────────────────────────── */
+
 function SeccionRedes() {
   return (
-    <section className="seccion nodo" id="redes">
-      <div className="seccion__cabecera">
+    <section className="seccion" id="redes">
+      <div className="seccion__cabecera nodo">
         <Etiqueta>Redes</Etiqueta>
         <h2>Conectar personas también genera capacidades.</h2>
         <p className="seccion__lead">
@@ -279,18 +314,27 @@ function SeccionRedes() {
         </p>
       </div>
 
-      <div className="fichas">
+      <div className="rejilla">
         {redes.map((red) => (
-          <article className="ficha" key={red.nombre}>
-            <Espacio proporcion="16 / 9" nota={`Imagen · ${red.nombre}`} />
-            <div className="ficha__cuerpo">
+          <article className="tarjeta" key={red.nombre}>
+            {red.imagen ? (
+              <Foto
+                src={red.imagen}
+                alt={red.nombre}
+                proporcion="5 / 4"
+                tamanos="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 33vw"
+              />
+            ) : (
+              <Espacio proporcion="5 / 4" nota={`Imagen · ${red.nombre}`} />
+            )}
+            <div className="tarjeta__cuerpo">
               <h3>{red.nombre}</h3>
-              <p>{red.texto}</p>
-              <div className="ficha__acciones">
+              <p className="tarjeta__resumen">{red.texto}</p>
+              <div className="tarjeta__acciones">
                 {red.enlaces.map((enlace) =>
                   enlace.url ? (
                     <a
-                      className="boton boton--linea"
+                      className="tarjeta__enlace"
                       key={enlace.etiqueta}
                       href={enlace.url}
                       target="_blank"
@@ -300,9 +344,8 @@ function SeccionRedes() {
                       <IconoExterno />
                     </a>
                   ) : (
-                    <span className="boton boton--pendiente" key={enlace.etiqueta}>
-                      {enlace.etiqueta}
-                      <em>enlace pendiente</em>
+                    <span className="tarjeta__pendiente" key={enlace.etiqueta}>
+                      {enlace.etiqueta} · enlace pendiente
                     </span>
                   ),
                 )}
@@ -315,10 +358,12 @@ function SeccionRedes() {
   );
 }
 
+/* ── Oportunidades ───────────────────────────────────────────── */
+
 function SeccionOportunidades() {
   return (
-    <section className="seccion nodo" id="oportunidades">
-      <div className="seccion__cabecera">
+    <section className="seccion" id="oportunidades">
+      <div className="seccion__cabecera nodo">
         <Etiqueta>Oportunidades</Etiqueta>
         <h2>La cooperación también abre oportunidades.</h2>
         <p className="seccion__lead">

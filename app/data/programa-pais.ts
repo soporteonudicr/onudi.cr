@@ -18,11 +18,7 @@ export type Eje = {
 export type PasoRuta = {
   etiqueta: string;
   pregunta: string;
-};
-
-export type Actor = {
-  etiqueta: string;
-  pregunta: string;
+  icono: string;
 };
 
 export type Personaje = {
@@ -74,6 +70,7 @@ export const dondeSeRefleja = {
 /* ── Programa País ───────────────────────────────────────────── */
 
 export const programaPais = {
+  imagen: "/imagenes/programa-pais.jpg",
   titulo: "Programa País ONUDI Costa Rica 2024-2028",
   subtitulo: "Una hoja de ruta construida desde las prioridades del país",
   textoHome:
@@ -150,19 +147,26 @@ export const notaEjes =
 /* ── Ruta de la cooperación (franja celeste del home) ────────── */
 
 export const rutaCooperacion: PasoRuta[] = [
-  { etiqueta: "Prioridad nacional", pregunta: "¿Qué necesita fortalecer Costa Rica?" },
-  { etiqueta: "Programa País", pregunta: "¿Dónde puede aportar ONUDI?" },
+  {
+    etiqueta: "Prioridad nacional",
+    pregunta: "¿Qué necesita fortalecer Costa Rica?",
+    icono: "/imagenes/ruta/01-prioridad.png",
+  },
+  {
+    etiqueta: "Programa País",
+    pregunta: "¿Dónde puede aportar ONUDI?",
+    icono: "/imagenes/ruta/02-programa.png",
+  },
   {
     etiqueta: "Cooperación técnica",
     pregunta: "¿Qué capacidades y conocimiento pueden movilizarse?",
+    icono: "/imagenes/ruta/03-cooperacion.png",
   },
-  { etiqueta: "Proyectos", pregunta: "¿Cómo se convierte la cooperación en acciones concretas?" },
-];
-
-export const actoresRuta: Actor[] = [
-  { etiqueta: "Instituciones nacionales", pregunta: "¿Quiénes participan desde Costa Rica?" },
-  { etiqueta: "Donantes", pregunta: "¿Quiénes aportan recursos para hacer posible la cooperación?" },
-  { etiqueta: "Socios técnicos", pregunta: "¿Quiénes aportan conocimiento especializado?" },
+  {
+    etiqueta: "Proyectos",
+    pregunta: "¿Cómo se convierte la cooperación en acciones concretas?",
+    icono: "/imagenes/ruta/04-proyectos.png",
+  },
 ];
 
 /* ── Rutas del Programa País (personajes) ────────────────────── */

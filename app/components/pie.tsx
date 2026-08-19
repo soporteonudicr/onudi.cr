@@ -13,21 +13,16 @@ export function PieDePagina() {
           <div>
             <h3>ONUDI</h3>
             <a href="https://www.unido.org/" target="_blank" rel="noreferrer">
-              Sitio oficial
+              unido.org
               <IconoExterno />
             </a>
           </div>
           <div>
-            <h3>Redes oficiales</h3>
-            <p className="pie__pendiente">Enlaces pendientes de confirmar</p>
-          </div>
-          <div>
-            <h3>Contacto</h3>
-            <p className="pie__pendiente">Contacto institucional pendiente de confirmar</p>
-          </div>
-          <div>
-            <h3>Legal</h3>
-            <p className="pie__pendiente">Enlaces legales y créditos pendientes</p>
+            <h3>Seguinos</h3>
+            <a href="https://www.instagram.com/onudi.cr/" target="_blank" rel="noreferrer">
+              Instagram · @onudi.cr
+              <IconoExterno />
+            </a>
           </div>
         </div>
 

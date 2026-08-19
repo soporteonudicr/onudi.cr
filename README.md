@@ -37,19 +37,26 @@ vacío, la sección muestra el mensaje de que todavía no hay convocatorias.
 
 ---
 
-## Espacios de imagen
+## Imágenes
 
-Donde va una fotografía todavía no entregada hay un recuadro punteado que dice
-qué imagen corresponde ahí. Son componentes `<Espacio nota="..." />`.
+Están en `public/imagenes/`:
 
-Cuando llegue una imagen:
+| Archivo | Dónde se ve |
+|---|---|
+| `portada.jpg` | Portada del inicio |
+| `programa-pais.jpg` | Sección Programa País |
+| `ruta/01-prioridad.png` … `04-proyectos.png` | Iconos de la ruta de la cooperación |
+| `proyectos/<slug>.jpg` | Tarjeta y portada de cada proyecto |
+| `ia-consciente.jpg` | Tarjeta de la plataforma IA Consciente |
+| `mujeres-industria.jpg` | Tarjeta de la red Mujeres en la Industria |
 
-1. Se guarda en `public/imagenes/`.
-2. Se reemplaza ese `<Espacio ... />` por:
+Para cambiar una imagen basta reemplazar el archivo conservando el nombre. Para
+agregar una nueva, se guarda en esa carpeta y se apunta desde el campo `imagen`
+del archivo de datos correspondiente.
 
-```tsx
-<Image src="/imagenes/nombre.jpg" alt="Descripción" width={2400} height={1000} />
-```
+Donde todavía no hay fotografía aparece un recuadro punteado que indica qué
+imagen corresponde ahí. Son componentes `<Espacio nota="..." />` y se
+reemplazan por `<Foto src="..." alt="..." />` cuando llegue el material.
 
 ---
 
