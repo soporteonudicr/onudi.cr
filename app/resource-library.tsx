@@ -174,9 +174,7 @@ export function ResourceLibrary() {
       </main>
 
       {slide && (
-        /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
         <div className="slide-backdrop" onMouseDown={() => setSlide(null)}>
-          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <aside className="slide-panel" aria-label={slide.title} onMouseDown={(event) => event.stopPropagation()}>
             <button className="slide-close" onClick={() => setSlide(null)} aria-label="Cerrar">×</button>
             <p className="slide-kicker">Borrador · {categoryLabel(slide.category)}</p>
