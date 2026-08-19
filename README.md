@@ -1,42 +1,76 @@
-# Centro de recursos | ONUDI Costa Rica
+# ONUDI Costa Rica
 
-Biblioteca digital que organiza proyectos, plataformas, redes y oportunidades
-vinculadas con las iniciativas de ONUDI en Costa Rica.
+Plataforma espejo de ONUDI Costa Rica: explica qué hace la organización en el
+país, cómo se organiza su cooperación y cómo esa cooperación se convierte en
+proyectos, plataformas, redes y oportunidades.
 
-Proyecto **Next.js (App Router)**, sin base de datos y sin servicios pagos.
-Todo el contenido vive en archivos del repositorio.
+Proyecto **Next.js (App Router)**. Sin base de datos, sin servicios pagos y sin
+variables de entorno: todo el contenido vive en archivos del repositorio.
 
-## Estructura
+---
 
-| Archivo | Para qué sirve |
+## Dónde se edita cada cosa
+
+Todo el texto está en `app/data/`. No hace falta tocar los componentes.
+
+| Archivo | Qué contiene |
 |---|---|
-| `app/page.tsx` | Página de inicio (carga la biblioteca) |
-| `app/resource-library.tsx` | Buscador, categorías, tarjetas y panel lateral |
-| `app/data/projects.ts` | **Contenido de los proyectos** — aquí se edita el texto |
-| `app/components/project-template.tsx` | Plantilla común de las páginas de proyecto |
-| `app/proyectos/[slug]/page.tsx` | Ruta individual de cada proyecto |
-| `app/globals.css` | Todos los estilos |
-| `public/` | Íconos e imágenes públicas |
-| `_archivo/` | Código viejo que no se usa (ver más abajo) |
+| `app/data/programa-pais.ts` | ¿Quiénes somos?, ODS 9, los 4 componentes, los 4 ejes transversales, la ruta de la cooperación y los personajes |
+| `app/data/proyectos.ts` | Los cinco proyectos, con sus siete secciones cada uno |
+| `app/data/recursos.ts` | Plataformas, redes y oportunidades |
 
-### Agregar o editar un proyecto
+### Agregar un proyecto
 
-Todo se hace en `app/data/projects.ts`. Cada proyecto es un bloque con
-`slug`, `title`, `summary`, `context`, `strategy`, `impact`, `partners` y `sdgs`.
-El `slug` define la URL: `/proyectos/mi-slug`.
+Se copia un bloque de `app/data/proyectos.ts` y se cambian los datos. El `slug`
+define la URL: `/proyectos/mi-slug`. La tarjeta del home y la página completa se
+generan solas.
 
-No hay que tocar nada más: la tarjeta en la biblioteca y la página del
-proyecto se generan solas.
+Un proyecto con `estado: "en-preparacion"` muestra la ficha lista pero sin
+contenido, tal como piden Costa Rica por Siempre y Conservación Internacional.
+Los campos que se dejan afuera simplemente no aparecen: si un proyecto no tiene
+`avances`, esa sección no se dibuja. Así nunca queda un espacio inventado.
 
-## Paleta
+### Agregar una oportunidad
 
-Solo tres colores, definidos en `app/globals.css`:
+En `app/data/recursos.ts`, dentro de `oportunidades`. Mientras el arreglo esté
+vacío, la sección muestra el mensaje de que todavía no hay convocatorias.
 
+---
+
+## Espacios de imagen
+
+Donde va una fotografía todavía no entregada hay un recuadro punteado que dice
+qué imagen corresponde ahí. Son componentes `<Espacio nota="..." />`.
+
+Cuando llegue una imagen:
+
+1. Se guarda en `public/imagenes/`.
+2. Se reemplaza ese `<Espacio ... />` por:
+
+```tsx
+<Image src="/imagenes/nombre.jpg" alt="Descripción" width={2400} height={1000} />
 ```
---blue:   #009cdc
---orange: #f47a42
---white:  #ffffff
-```
+
+---
+
+## Sistema visual
+
+**Color.** El azul es exactamente el del emblema: `#009CDC`. El celeste
+`#E1F2FB` es su tinte y se usa en las franjas. El azul hondo `#0A2B3C` existe
+solo para que los párrafos largos se lean sin cansar la vista. Se definen al
+inicio de `app/globals.css`.
+
+**Tipografía.** Archivo para titulares (la grotesca más cercana al logotipo
+ONUDI) y Source Sans 3 para texto corrido. Se cambian en `app/layout.tsx`,
+sustituyendo las dos importaciones de `next/font/google`.
+
+**Firma visual.** El hilo de cooperación: una línea azul continua que baja por
+el borde izquierdo del home y marca cada sección con un nodo. Dibuja la ruta de
+comprensión que plantea el documento. En móvil se oculta.
+
+**Logos.** En `public/logos/`, en versión azul y blanca, emblema y horizontal.
+
+---
 
 ## Desplegar en Vercel
 
@@ -45,9 +79,7 @@ Solo tres colores, definidos en `app/globals.css`:
 3. Dejar todo por defecto. Vercel detecta Next.js solo.
 4. **Deploy**.
 
-No hay que configurar variables de entorno, comandos de build ni bases de datos.
-
-## Correr localmente (opcional)
+## Correr localmente
 
 Requiere Node.js 20.9 o superior.
 
@@ -58,10 +90,19 @@ npm run dev
 
 Queda en `http://localhost:3000`.
 
+---
+
+## Reglas editoriales que respeta el código
+
+- Las metas nunca se muestran como resultados: son dos bloques separados y con
+  etiqueta explícita.
+- Ningún actor de gobernanza aparece sin su rol escrito.
+- Lo que no tiene fuente validada queda como "contenido en preparación", no se
+  rellena.
+- Las oportunidades dirigen siempre al sitio oficial; la plataforma no
+  reproduce convocatorias completas.
+
 ## Sobre `_archivo/`
 
-La versión anterior traía tres archivos de un proyecto distinto (un
-"observatorio" con base de datos, usuarios y reportes) que no forman parte
-de este sitio y que estaban rotos: llamaban a tablas y módulos que no
-existen. Se guardaron ahí como `.txt` para no perderlos. La carpeta está
-excluida del build y no afecta el despliegue.
+Tres archivos de un proyecto distinto que venían en el ZIP original. Están fuera
+del build y no afectan el despliegue.

@@ -1,29 +1,29 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ProjectTemplate } from "../../components/project-template";
-import { getProject, projects } from "../../data/projects";
+import { ProyectoDetalle } from "../../components/proyecto-detalle";
+import { getProyecto, proyectos } from "../../data/proyectos";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return proyectos.map((proyecto) => ({ slug: proyecto.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProject(slug);
-  if (!project) return { title: "Proyecto no encontrado" };
+  const proyecto = getProyecto(slug);
+  if (!proyecto) return { title: "Proyecto no encontrado | ONUDI Costa Rica" };
   return {
-    title: `${project.shortTitle} | ONUDI Costa Rica`,
-    description: project.summary,
+    title: `${proyecto.nombre} | ONUDI Costa Rica`,
+    description: proyecto.resumen,
   };
 }
 
-export default async function ProjectPage({ params }: PageProps) {
+export default async function ProyectoPage({ params }: PageProps) {
   const { slug } = await params;
-  const project = getProject(slug);
-  if (!project) notFound();
-  return <ProjectTemplate project={project} />;
+  const proyecto = getProyecto(slug);
+  if (!proyecto) notFound();
+  return <ProyectoDetalle proyecto={proyecto} />;
 }

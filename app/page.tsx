@@ -1,5 +1,5 @@
-import { ResourceLibrary } from "./resource-library";
+import { Inicio } from "./inicio";
 
 export default function Home() {
-  return <ResourceLibrary />;
+  return <Inicio />;
 }
