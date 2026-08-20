@@ -3,27 +3,10 @@
  * Todo el texto de esta plataforma se edita desde los archivos de esta carpeta.
  */
 
-export type Componente = {
-  numero: string;
-  titulo: string;
-  frase: string;
-  texto: string;
-};
-
-export type Eje = {
-  titulo: string;
-  texto: string;
-};
-
 export type PasoRuta = {
   etiqueta: string;
   pregunta: string;
   icono: string;
-};
-
-export type Personaje = {
-  id: string;
-  nombre: string;
 };
 
 /* ── ¿Quiénes somos? ─────────────────────────────────────────── */
@@ -51,23 +34,28 @@ export const dondeSeRefleja = {
     {
       titulo: "Habilidades técnicas para el empleo",
       texto: "Fortalecer capacidades para una industria que evoluciona.",
+      icono: "/imagenes/refleja/01.png",
     },
     {
       titulo: "Energías renovables y descarbonización",
       texto: "Impulsar nuevas soluciones para una producción más sostenible.",
+      icono: "/imagenes/refleja/02.png",
     },
     {
       titulo: "Economía circular y eficiencia de recursos",
       texto: "Aprovechar mejor materiales y recursos dentro de los procesos productivos.",
+      icono: "/imagenes/refleja/03.png",
     },
     {
       titulo: "Infraestructura de calidad, competitividad e innovación",
       texto: "Fortalecer las capacidades que permiten demostrar calidad, innovar y competir.",
+      icono: "/imagenes/refleja/04.png",
     },
   ],
 };
 
 /* ── Programa País ───────────────────────────────────────────── */
+
 
 export const programaPais = {
   imagen: "/imagenes/programa-pais.jpg",
@@ -83,66 +71,6 @@ export const programaPais = {
     "El Programa País vigente trabaja sobre cuatro componentes que buscan fortalecer competitividad, empleo, descarbonización, economía circular, cadenas de valor e innovación.",
   ],
 };
-
-export const componentes: Componente[] = [
-  {
-    numero: "01",
-    titulo: "Habilidades técnicas para el empleo",
-    frase: "Preparar talento para una industria que cambia.",
-    texto:
-      "Fortalecimiento de competencias técnicas, formación y actualización de capacidades para responder a nuevas tecnologías, modelos productivos y necesidades del mercado laboral.",
-  },
-  {
-    numero: "02",
-    titulo: "Energías renovables y descarbonización",
-    frase: "Transformar la forma en que producimos y utilizamos la energía.",
-    texto:
-      "Promoción de energías renovables, soluciones de descarbonización y capacidades que permitan avanzar hacia actividades productivas más eficientes y bajas en carbono.",
-  },
-  {
-    numero: "03",
-    titulo: "Economía circular y eficiencia de recursos",
-    frase: "Aprovechar mejor lo que ya tenemos.",
-    texto:
-      "Promoción de modelos productivos que reduzcan desperdicios, mantengan materiales dentro de los ciclos productivos y utilicen de forma más eficiente los recursos.",
-  },
-  {
-    numero: "04",
-    titulo: "Infraestructura de calidad, competitividad e innovación",
-    frase: "Tener las capacidades para demostrar calidad, innovar y competir.",
-    texto:
-      "Fortalecimiento de normas, estándares, trazabilidad, tecnologías, conocimiento e instituciones que permiten a los sectores productivos responder a mercados cada vez más exigentes.",
-  },
-];
-
-export const notaComponentes =
-  "Los cuatro componentes corresponden a la estructura presentada para el Programa País ONUDI Costa Rica 2024-2028.";
-
-export const ejes: Eje[] = [
-  {
-    titulo: "Juventud y equidad de género",
-    texto:
-      "Ampliar oportunidades y fortalecer la participación de diferentes grupos en los procesos de transformación productiva.",
-  },
-  {
-    titulo: "Cadenas de valor sostenibles",
-    texto:
-      "Conectar los distintos eslabones de la producción para aumentar sostenibilidad, resiliencia y generación de valor.",
-  },
-  {
-    titulo: "PYMES",
-    texto:
-      "Fortalecer las capacidades de pequeñas y medianas empresas para innovar, cumplir estándares y participar en cadenas de valor.",
-  },
-  {
-    titulo: "Investigación, desarrollo e innovación",
-    texto:
-      "Conectar conocimiento, tecnología y nuevas soluciones con necesidades productivas reales.",
-  },
-];
-
-export const notaEjes =
-  "La matriz del Programa País plantea estos elementos como conexiones que atraviesan los componentes y permiten comprender el programa como un sistema interrelacionado.";
 
 /* ── Ruta de la cooperación (franja celeste del home) ────────── */
 
@@ -167,43 +95,4 @@ export const rutaCooperacion: PasoRuta[] = [
     pregunta: "¿Cómo se convierte la cooperación en acciones concretas?",
     icono: "/imagenes/ruta/04-proyectos.png",
   },
-];
-
-/* ── Rutas del Programa País (personajes) ────────────────────── */
-
-export const personajes: Personaje[] = [
-  { id: "vero", nombre: "Vero" },
-  { id: "nicol", nombre: "Nicol" },
-  { id: "julian", nombre: "Julián" },
-  { id: "matias", nombre: "Matías" },
-  { id: "alberto", nombre: "Alberto" },
-];
-
-/** Pasos que debe aceptar cada ruta. El contenido narrativo se incorpora luego. */
-export const estructuraRuta = [
-  "Personaje",
-  "Necesidad",
-  "Componente",
-  "Acción",
-  "Eje transversal",
-  "Resultado esperado",
-];
-
-/** Conexiones de la matriz disponibles para construir las historias. */
-export const conexionesDisponibles = [
-  "Formación técnica STEM",
-  "Identificación de áreas de innovación",
-  "Demanda de empleos verdes",
-  "Encadenamientos productivos y clústeres",
-  "Identificación de brechas de género y juventud",
-  "Herramientas para adoptar economía circular",
-  "Asistencia a PYMES para cumplimiento de estándares",
-  "Investigación aplicada en energías limpias",
-  "Incorporación de energías renovables",
-  "Promoción de contratación",
-  "Recirculación de materiales",
-  "Certificación de empresas circulares",
-  "Integración de estrategias de género",
-  "Fortalecimiento de infraestructura",
-  "Herramientas de trazabilidad y sostenibilidad",
 ];

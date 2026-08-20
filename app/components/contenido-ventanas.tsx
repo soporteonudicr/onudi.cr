@@ -1,20 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import {
-  componentes,
-  conexionesDisponibles,
-  dondeSeRefleja,
-  ejes,
-  estructuraRuta,
-  notaComponentes,
-  notaEjes,
-  ods9,
-  personajes,
-  programaPais,
-  quienesSomos,
-} from "../data/programa-pais";
-import { Espacio, Etiqueta, EnPreparacion, IconoFlecha } from "./ui";
+import Image from "next/image";
+import { dondeSeRefleja, ods9, quienesSomos } from "../data/programa-pais";
+import { Matriz } from "./matriz";
+import { Etiqueta, IconoFlecha } from "./ui";
 
 /* ── Ventana · ¿Quiénes somos? ───────────────────────────────── */
 
@@ -39,11 +28,14 @@ export function QuienesSomos({ onVerProgramaPais }: { onVerProgramaPais: () => v
             <p key={parrafo}>{parrafo}</p>
           ))}
         </div>
-        <Espacio
-          proporcion="4 / 3"
-          tono="sobre-azul"
-          nota="Fotografía · industria, innovación o infraestructura en Costa Rica"
-        />
+        <div className="ods9__cubo">
+          <Image
+            src="/imagenes/ods9-cubo.png"
+            alt="Objetivo de Desarrollo Sostenible 9: Industria, innovación e infraestructura"
+            width={620}
+            height={497}
+          />
+        </div>
       </section>
 
       <section className="doc__bloque">
@@ -51,8 +43,11 @@ export function QuienesSomos({ onVerProgramaPais }: { onVerProgramaPais: () => v
         <div className="refleja">
           {dondeSeRefleja.entradas.map((entrada) => (
             <article className="refleja__item" key={entrada.titulo}>
-              <h3>{entrada.titulo}</h3>
-              <p>{entrada.texto}</p>
+              <Image src={entrada.icono} alt="" width={150} height={150} />
+              <div>
+                <h3>{entrada.titulo}</h3>
+                <p>{entrada.texto}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -68,112 +63,5 @@ export function QuienesSomos({ onVerProgramaPais }: { onVerProgramaPais: () => v
 /* ── Ventana · Programa País ─────────────────────────────────── */
 
 export function ProgramaPais() {
-  return (
-    <article className="doc">
-      <header className="doc__portada">
-        <Etiqueta>Programa País</Etiqueta>
-        <h1>{programaPais.titulo}</h1>
-        <p className="doc__subtitulo">{programaPais.subtitulo}</p>
-        {programaPais.texto.map((parrafo) => (
-          <p className="doc__lead" key={parrafo}>
-            {parrafo}
-          </p>
-        ))}
-      </header>
-
-      <section className="doc__bloque">
-        <Etiqueta>Cuatro componentes</Etiqueta>
-        <h2 className="doc__titulo">En qué trabaja el programa</h2>
-        <div className="componentes">
-          {componentes.map((componente) => (
-            <article className="componente" key={componente.numero}>
-              <span className="componente__numero">{componente.numero}</span>
-              <div>
-                <h3>{componente.titulo}</h3>
-                <p className="componente__frase">{componente.frase}</p>
-                <p>{componente.texto}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <p className="doc__nota">{notaComponentes}</p>
-      </section>
-
-      <section className="doc__bloque">
-        <Etiqueta>Ejes transversales</Etiqueta>
-        <h2 className="doc__titulo">Cuatro temas atraviesan las distintas rutas</h2>
-        <div className="ejes">
-          {ejes.map((eje) => (
-            <article className="eje" key={eje.titulo}>
-              <h3>{eje.titulo}</h3>
-              <p>{eje.texto}</p>
-            </article>
-          ))}
-        </div>
-        <p className="doc__nota">{notaEjes}</p>
-      </section>
-
-      <RutasPersonajes />
-    </article>
-  );
-}
-
-/* ── Rutas del Programa País ─────────────────────────────────── */
-
-function RutasPersonajes() {
-  const [activo, setActivo] = useState<string | null>(null);
-  const personaje = personajes.find((item) => item.id === activo);
-
-  return (
-    <section className="doc__bloque rutas">
-      <Etiqueta>Rutas del Programa País</Etiqueta>
-      <h2 className="doc__titulo">Seguí una ruta</h2>
-      <p className="doc__lead">
-        Elegí una persona y descubrí cómo una necesidad concreta puede conectar diferentes
-        componentes y ejes del Programa País.
-      </p>
-
-      <div className="rutas__personajes">
-        {personajes.map((item) => (
-          <button
-            type="button"
-            key={item.id}
-            className={`personaje ${activo === item.id ? "personaje--activo" : ""}`}
-            onClick={() => setActivo(activo === item.id ? null : item.id)}
-            aria-pressed={activo === item.id}
-          >
-            <span className="personaje__retrato">
-              <Espacio proporcion="1 / 1" nota={`Retrato de ${item.nombre}`} />
-            </span>
-            <span className="personaje__nombre">{item.nombre}</span>
-          </button>
-        ))}
-      </div>
-
-      {personaje && (
-        <div className="ruta-detalle">
-          <h3>La ruta de {personaje.nombre}</h3>
-          <EnPreparacion>
-            La historia de {personaje.nombre} se incorporará con los textos narrativos aprobados.
-          </EnPreparacion>
-          <ol className="ruta-detalle__pasos">
-            {estructuraRuta.map((paso, indice) => (
-              <li key={paso}>
-                <span className="ruta-detalle__indice">{String(indice + 1).padStart(2, "0")}</span>
-                <span className="ruta-detalle__paso">{paso}</span>
-              </li>
-            ))}
-          </ol>
-          <details className="ruta-detalle__conexiones">
-            <summary>Conexiones disponibles en la matriz</summary>
-            <ul>
-              {conexionesDisponibles.map((conexion) => (
-                <li key={conexion}>{conexion}</li>
-              ))}
-            </ul>
-          </details>
-        </div>
-      )}
-    </section>
-  );
+  return <Matriz />;
 }

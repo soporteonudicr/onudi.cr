@@ -14,7 +14,9 @@ import {
   IconoFlecha,
   Marca,
 } from "./components/ui";
+import { Carrusel } from "./components/carrusel";
 import { Ventana } from "./components/ventana";
+import { fotosInicio } from "./data/carrusel";
 import { programaPais, rutaCooperacion } from "./data/programa-pais";
 import { proyectos } from "./data/proyectos";
 import { oportunidades, plataformas, publicosOportunidad, redes } from "./data/recursos";
@@ -91,16 +93,6 @@ function Encabezado({ onConocerOnudi }: { onConocerOnudi: () => void }) {
 function Hero({ onConocerOnudi }: { onConocerOnudi: () => void }) {
   return (
     <section className="hero">
-      <div className="hero__imagen">
-        <Foto
-          src="/imagenes/portada.jpg"
-          alt="Personas trabajando en industria, agricultura, laboratorio y energía solar en Costa Rica"
-          proporcion="16 / 9"
-          tamanos="100vw"
-          prioridad
-        />
-      </div>
-
       <div className="hero__texto">
         <div className="hero__columna">
           <h1>Desarrollo industrial para una Costa Rica más competitiva, inclusiva y sostenible.</h1>
@@ -120,15 +112,7 @@ function Hero({ onConocerOnudi }: { onConocerOnudi: () => void }) {
           </button>
         </div>
 
-        <div className="hero__emblema">
-          <Image
-            src="/logos/emblema-azul.png"
-            alt="Emblema de ONUDI"
-            width={470}
-            height={400}
-            priority
-          />
-        </div>
+        <Carrusel imagenes={fotosInicio} />
       </div>
     </section>
   );
@@ -265,37 +249,29 @@ function SeccionPlataformas() {
         </p>
       </div>
 
-      <div className="rejilla">
-        {plataformas.map((plataforma) => (
-          <article className="tarjeta" key={plataforma.nombre}>
-            {plataforma.imagen ? (
-              <Foto
-                src={plataforma.imagen}
-                alt={plataforma.nombre}
-                proporcion="5 / 4"
-                encaje="contain"
-                tono="celeste"
-                tamanos="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 33vw"
-              />
-            ) : (
-              <Espacio proporcion="5 / 4" nota={`Imagen · ${plataforma.nombre}`} />
-            )}
-            <div className="tarjeta__cuerpo">
-              <h3>{plataforma.nombre}</h3>
-              <p className="tarjeta__resumen">{plataforma.texto}</p>
-              <a
-                className="tarjeta__enlace"
-                href={plataforma.enlace}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {plataforma.boton}
-                <IconoExterno />
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
+      {plataformas.map((plataforma) => (
+        <div className="duo" key={plataforma.nombre}>
+          <div className="duo__texto">
+            <h3>{plataforma.nombre}</h3>
+            <p>{plataforma.texto}</p>
+            <a className="boton boton--azul" href={plataforma.enlace} target="_blank" rel="noreferrer">
+              {plataforma.boton}
+              <IconoExterno />
+            </a>
+          </div>
+          {plataforma.imagen ? (
+            <Foto
+              src={plataforma.imagen}
+              alt={plataforma.nombre}
+              proporcion="16 / 9"
+              tono="celeste"
+              tamanos="(max-width: 900px) 100vw, 48vw"
+            />
+          ) : (
+            <Espacio proporcion="16 / 9" nota={`Imagen · ${plataforma.nombre}`} />
+          )}
+        </div>
+      ))}
     </section>
   );
 }
@@ -314,46 +290,45 @@ function SeccionRedes() {
         </p>
       </div>
 
-      <div className="rejilla">
-        {redes.map((red) => (
-          <article className="tarjeta" key={red.nombre}>
-            {red.imagen ? (
-              <Foto
-                src={red.imagen}
-                alt={red.nombre}
-                proporcion="5 / 4"
-                tamanos="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 33vw"
-              />
-            ) : (
-              <Espacio proporcion="5 / 4" nota={`Imagen · ${red.nombre}`} />
-            )}
-            <div className="tarjeta__cuerpo">
-              <h3>{red.nombre}</h3>
-              <p className="tarjeta__resumen">{red.texto}</p>
-              <div className="tarjeta__acciones">
-                {red.enlaces.map((enlace) =>
-                  enlace.url ? (
-                    <a
-                      className="tarjeta__enlace"
-                      key={enlace.etiqueta}
-                      href={enlace.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {enlace.etiqueta}
-                      <IconoExterno />
-                    </a>
-                  ) : (
-                    <span className="tarjeta__pendiente" key={enlace.etiqueta}>
-                      {enlace.etiqueta} · enlace pendiente
-                    </span>
-                  ),
-                )}
-              </div>
+      {redes.map((red) => (
+        <div className="duo duo--invertido" key={red.nombre}>
+          <div className="duo__texto">
+            <h3>{red.nombre}</h3>
+            <p>{red.texto}</p>
+            <div className="duo__acciones">
+              {red.enlaces.map((enlace) =>
+                enlace.url ? (
+                  <a
+                    className="boton boton--azul"
+                    key={enlace.etiqueta}
+                    href={enlace.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {enlace.etiqueta}
+                    <IconoExterno />
+                  </a>
+                ) : (
+                  <span className="boton boton--pendiente" key={enlace.etiqueta}>
+                    {enlace.etiqueta}
+                    <em>enlace pendiente</em>
+                  </span>
+                ),
+              )}
             </div>
-          </article>
-        ))}
-      </div>
+          </div>
+          {red.imagen ? (
+            <Foto
+              src={red.imagen}
+              alt={red.nombre}
+              proporcion="5 / 4"
+              tamanos="(max-width: 900px) 100vw, 48vw"
+            />
+          ) : (
+            <Espacio proporcion="5 / 4" nota={`Imagen · ${red.nombre}`} />
+          )}
+        </div>
+      ))}
     </section>
   );
 }
