@@ -1909,6 +1909,35 @@ dd {
   letter-spacing: -0.02em;
 }
 
+.datos__ods {
+  grid-column: span 2;
+}
+
+.datos__ods dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.datos__ods a {
+  display: block;
+  border-radius: 5px;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.datos__ods a:hover,
+.datos__ods a:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgb(10 43 60 / 14%);
+}
+
+.datos__ods img {
+  display: block;
+  width: 58px;
+  height: 58px;
+  border-radius: 4px;
+}
+
 .proyecto__vacio {
   margin-top: 34px;
   padding: clamp(30px, 4vw, 48px);
@@ -1973,10 +2002,16 @@ dd {
 }
 
 .accion {
+  overflow: hidden;
   padding: 22px;
   background: var(--celeste-suave);
   border-left: 2px solid var(--azul);
   border-radius: 0 var(--radio) var(--radio) 0;
+}
+
+.accion > .foto {
+  margin: -22px -22px 20px;
+  border-radius: 0;
 }
 
 .accion h3 {
@@ -1991,6 +2026,24 @@ dd {
   color: var(--azul-medio);
   font-size: 0.9375rem;
   line-height: 1.55;
+}
+
+.galeria-proyecto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.galeria-proyecto figure {
+  margin: 0;
+}
+
+.galeria-proyecto figcaption {
+  padding: 9px 2px 0;
+  color: var(--azul-medio);
+  font-size: 0.8125rem;
+  line-height: 1.4;
 }
 
 /* Flujo */
@@ -2106,9 +2159,15 @@ dd {
 }
 
 .motivo {
+  overflow: hidden;
   padding: 24px;
   border: 1px solid var(--linea);
   border-radius: var(--radio);
+}
+
+.motivo > .foto {
+  margin: -24px -24px 20px;
+  border-radius: 0;
 }
 
 .motivo h3 {
@@ -2198,6 +2257,42 @@ dd {
   font-size: 1rem;
 }
 
+.conocer__item > .foto {
+  margin: -22px -22px 18px;
+  border-radius: var(--radio) var(--radio) 0 0;
+}
+
+.conocer__tipo {
+  margin: 0 0 7px;
+  color: var(--naranja);
+  font-family: var(--tipo-titulo);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.conocer__item > p:not(.conocer__tipo, .en-preparacion) {
+  color: var(--azul-medio);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.conocer__item > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: var(--azul);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.conocer__item > a:hover {
+  text-decoration: underline;
+}
+
 /* Gobernanza */
 
 .gobernanza__caja {
@@ -2238,6 +2333,10 @@ dd {
 .actores-lista__logo {
   width: 108px;
   margin-bottom: 14px;
+}
+
+.actores-lista__logo .foto {
+  background: var(--blanco);
 }
 
 .actores-lista h3 {

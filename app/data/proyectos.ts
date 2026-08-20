@@ -12,6 +12,8 @@ export type Actor = {
   nombre: string;
   sigla?: string;
   rol: string;
+  logo?: string;
+  logoAlt?: string;
   sitio?: string;
   redes?: string;
 };
@@ -19,6 +21,8 @@ export type Actor = {
 export type Accion = {
   verbo: string;
   texto: string;
+  imagen?: string;
+  imagenAlt?: string;
 };
 
 export type Paso = {
@@ -29,6 +33,25 @@ export type Paso = {
 export type Motivo = {
   titulo: string;
   texto?: string;
+  imagen?: string;
+  imagenAlt?: string;
+};
+
+export type FotoProyecto = {
+  id: string;
+  url: string;
+  alt: string;
+  pie?: string;
+};
+
+export type RecursoProyecto = {
+  id: string;
+  tipo: string;
+  titulo: string;
+  texto?: string;
+  imagen?: string;
+  imagenAlt?: string;
+  url: string;
 };
 
 export type Proyecto = {
@@ -43,8 +66,10 @@ export type Proyecto = {
   resumen: string;
   /** Imagen de la tarjeta del inicio, en public/imagenes/proyectos/ */
   imagen?: string;
+  imagenAlt?: string;
   /** Franja de portada de la página del proyecto, en proyectos/banners/ */
   banner?: string;
+  bannerAlt?: string;
   tags: string[];
   estado: "publicado" | "en-preparacion";
 
@@ -63,6 +88,7 @@ export type Proyecto = {
     titulo?: string;
     intro?: string;
     acciones: Accion[];
+    galeria?: FotoProyecto[];
     nota?: string;
   };
 
@@ -71,6 +97,8 @@ export type Proyecto = {
     intro?: string;
     forma: "lineal" | "circular";
     pasos: Paso[];
+    diagrama?: string;
+    diagramaAlt?: string;
     ejemplos?: { titulo: string; items: string[] };
     nota?: string;
   };
@@ -82,6 +110,8 @@ export type Proyecto = {
     resultados: string[];
     nota?: string;
   };
+
+  recursos?: RecursoProyecto[];
 
   gobernanza?: {
     nota?: string;

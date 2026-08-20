@@ -1,7 +1,22 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Sitio informativo: no necesita configuración especial por ahora.
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "onudi-eventos-crm.vercel.app",
+      },
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
+      {
+        protocol: "https",
+        hostname: "onudi-cr.vercel.app",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

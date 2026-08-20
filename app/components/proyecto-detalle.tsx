@@ -7,6 +7,7 @@ import {
   EnPreparacion,
   Espacio,
   Etiqueta,
+  Foto,
   IconoExterno,
   IconoFlechaAtras,
   Marca,
@@ -14,14 +15,11 @@ import {
 
 export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
   const referencia = proyecto.referencia;
+  const ods = referencia?.ods ?? [];
   const datos = [
     referencia?.pais && { etiqueta: "País", valor: referencia.pais },
     referencia?.periodo && { etiqueta: "Periodo", valor: referencia.periodo },
     referencia?.programa && { etiqueta: "Programa", valor: referencia.programa },
-    referencia?.ods?.length && {
-      etiqueta: "ODS",
-      valor: referencia.ods.map((numero) => `ODS ${numero}`).join(" · "),
-    },
   ].filter(Boolean) as { etiqueta: string; valor: string }[];
 
   return (
@@ -45,7 +43,7 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
           {proyecto.banner ? (
             <Image
               src={proyecto.banner}
-              alt={proyecto.nombre}
+              alt={proyecto.bannerAlt ?? proyecto.nombre}
               width={1600}
               height={467}
               priority
@@ -71,7 +69,7 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
           )}
         </header>
 
-        {datos.length > 0 && (
+        {(datos.length > 0 || ods.length > 0) && (
           <dl className="datos">
             {datos.map((dato) => (
               <div key={dato.etiqueta}>
@@ -79,6 +77,34 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
                 <dd>{dato.valor}</dd>
               </div>
             ))}
+            {ods.length > 0 && (
+              <div className="datos__ods">
+                <dt>ODS</dt>
+                <dd>
+                  {ods.map((numero) => (
+                    <a
+                      href={`https://ods.cr/es/objetivo/objetivo-${numero}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      key={numero}
+                      aria-label={`Conocer el ODS ${numero}`}
+                      title={`ODS ${numero}`}
+                    >
+                      <Image
+                        src={
+                          numero === 17
+                            ? "/ods/ods-17.jpg"
+                            : `/ods/ods-${String(numero).padStart(2, "0")}.png`
+                        }
+                        alt={`ODS ${numero}`}
+                        width={72}
+                        height={72}
+                      />
+                    </a>
+                  ))}
+                </dd>
+              </div>
+            )}
           </dl>
         )}
 
@@ -119,11 +145,34 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
                   <div className="acciones">
                     {proyecto.respuesta.acciones.map((accion) => (
                       <article className="accion" key={accion.verbo}>
+                        {accion.imagen && (
+                          <Foto
+                            src={accion.imagen}
+                            alt={accion.imagenAlt ?? accion.verbo}
+                            proporcion="16 / 9"
+                            tamanos="(max-width: 760px) 100vw, 34vw"
+                          />
+                        )}
                         <h3>{accion.verbo}</h3>
                         <p>{accion.texto}</p>
                       </article>
                     ))}
                   </div>
+                  {proyecto.respuesta.galeria && proyecto.respuesta.galeria.length > 0 && (
+                    <div className="galeria-proyecto" aria-label="Fotografías del proyecto">
+                      {proyecto.respuesta.galeria.map((foto) => (
+                        <figure key={foto.id}>
+                          <Foto
+                            src={foto.url}
+                            alt={foto.alt}
+                            proporcion="4 / 3"
+                            tamanos="(max-width: 760px) 100vw, 32vw"
+                          />
+                          {foto.pie && <figcaption>{foto.pie}</figcaption>}
+                        </figure>
+                      ))}
+                    </div>
+                  )}
                   {proyecto.respuesta.nota && (
                     <p className="doc__nota">{proyecto.respuesta.nota}</p>
                   )}
@@ -163,10 +212,22 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
                     </p>
                   )}
 
-                  <Espacio
-                    proporcion="16 / 9"
-                    nota={`Diagrama, mapa o fotografía del proceso · ${proyecto.nombre}`}
-                  />
+                  {proyecto.funcionamiento.diagrama ? (
+                    <Foto
+                      src={proyecto.funcionamiento.diagrama}
+                      alt={
+                        proyecto.funcionamiento.diagramaAlt ??
+                        `Diagrama del proyecto ${proyecto.nombre}`
+                      }
+                      proporcion="16 / 9"
+                      encaje="contain"
+                    />
+                  ) : (
+                    <Espacio
+                      proporcion="16 / 9"
+                      nota={`Diagrama, mapa o fotografía del proceso · ${proyecto.nombre}`}
+                    />
+                  )}
 
                   {proyecto.funcionamiento.ejemplos && (
                     <div className="ejemplos">
@@ -196,6 +257,14 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
                   <div className="motivos">
                     {proyecto.importa.map((motivo) => (
                       <article className="motivo" key={motivo.titulo}>
+                        {motivo.imagen && (
+                          <Foto
+                            src={motivo.imagen}
+                            alt={motivo.imagenAlt ?? motivo.titulo}
+                            proporcion="4 / 3"
+                            tamanos="(max-width: 760px) 100vw, 30vw"
+                          />
+                        )}
                         <h3>{motivo.titulo}</h3>
                         {motivo.texto && <p>{motivo.texto}</p>}
                       </article>
@@ -258,19 +327,36 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
                 <div className="ps__contenido">
                   <Etiqueta>Conocé más</Etiqueta>
                   <h2>Material relacionado</h2>
-                  <div className="conocer">
-                    {[
-                      "Explorar herramientas",
-                      "Ver documentos",
-                      "Conocer instituciones",
-                      "Ver publicaciones relacionadas",
-                    ].map((titulo) => (
-                      <article className="conocer__item" key={titulo}>
-                        <h3>{titulo}</h3>
+                  {proyecto.recursos && proyecto.recursos.length > 0 ? (
+                    <div className="conocer">
+                      {proyecto.recursos.map((recurso) => (
+                        <article className="conocer__item" key={recurso.id}>
+                          {recurso.imagen && (
+                            <Foto
+                              src={recurso.imagen}
+                              alt={recurso.imagenAlt ?? recurso.titulo}
+                              proporcion="16 / 9"
+                              tamanos="(max-width: 760px) 100vw, 30vw"
+                            />
+                          )}
+                          <p className="conocer__tipo">{recurso.tipo}</p>
+                          <h3>{recurso.titulo}</h3>
+                          {recurso.texto && <p>{recurso.texto}</p>}
+                          <a href={recurso.url} target="_blank" rel="noreferrer">
+                            Conocer más
+                            <IconoExterno />
+                          </a>
+                        </article>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="conocer">
+                      <article className="conocer__item">
+                        <h3>Material relacionado</h3>
                         <EnPreparacion>Sin material cargado todavía</EnPreparacion>
                       </article>
-                    ))}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </section>
             )}
@@ -289,7 +375,19 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
                     {proyecto.gobernanza.actores.map((actor) => (
                       <li key={actor.nombre}>
                         <div className="actores-lista__logo">
-                          <Espacio proporcion="3 / 2" nota={`Logo · ${actor.sigla ?? actor.nombre}`} />
+                          {actor.logo ? (
+                            <Foto
+                              src={actor.logo}
+                              alt={actor.logoAlt ?? `Logo de ${actor.nombre}`}
+                              proporcion="3 / 2"
+                              encaje="contain"
+                            />
+                          ) : (
+                            <Espacio
+                              proporcion="3 / 2"
+                              nota={`Logo · ${actor.sigla ?? actor.nombre}`}
+                            />
+                          )}
                         </div>
                         <h3>
                           {actor.nombre}
@@ -299,6 +397,12 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
                         {actor.sitio && (
                           <a href={actor.sitio} target="_blank" rel="noreferrer">
                             Sitio oficial
+                            <IconoExterno />
+                          </a>
+                        )}
+                        {actor.redes && (
+                          <a href={actor.redes} target="_blank" rel="noreferrer">
+                            Redes sociales
                             <IconoExterno />
                           </a>
                         )}

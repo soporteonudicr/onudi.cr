@@ -19,7 +19,7 @@ import { Carrusel } from "./components/carrusel";
 import { Ventana } from "./components/ventana";
 import { fotosInicio } from "./data/carrusel";
 import { programaPais, rutaCooperacion } from "./data/programa-pais";
-import { proyectos } from "./data/proyectos";
+import type { Proyecto } from "./data/proyectos";
 import {
   artesSeccion,
   masHerramientas,
@@ -31,8 +31,12 @@ import {
 } from "./data/recursos";
 
 type VentanaAbierta = "quienes-somos" | "programa-pais" | null;
+type ProyectoResumen = Pick<
+  Proyecto,
+  "slug" | "nombre" | "resumen" | "imagen" | "imagenAlt" | "tags" | "estado"
+>;
 
-export function Inicio() {
+export function Inicio({ proyectos }: { proyectos: ProyectoResumen[] }) {
   const [ventana, setVentana] = useState<VentanaAbierta>(null);
 
   return (
@@ -46,7 +50,7 @@ export function Inicio() {
         <div className="hilo">
           <SeccionProgramaPais onAbrir={() => setVentana("programa-pais")} />
           <FranjaRuta onAbrir={() => setVentana("programa-pais")} />
-          <SeccionProyectos />
+          <SeccionProyectos proyectos={proyectos} />
           <SeccionPlataformas />
           <SeccionRedes />
           <SeccionOportunidades />
@@ -220,7 +224,7 @@ function FranjaRuta({ onAbrir }: { onAbrir: () => void }) {
 
 /* ── Proyectos ───────────────────────────────────────────────── */
 
-function SeccionProyectos() {
+function SeccionProyectos({ proyectos }: { proyectos: ProyectoResumen[] }) {
   return (
     <section className="seccion" id="proyectos">
       <div className="seccion__cabecera nodo">
@@ -232,13 +236,14 @@ function SeccionProyectos() {
         </p>
       </div>
 
-      <div className="rejilla">
-        {proyectos.map((proyecto) => (
+      {proyectos.length > 0 ? (
+        <div className="rejilla">
+          {proyectos.map((proyecto) => (
           <article className="tarjeta" key={proyecto.slug}>
             {proyecto.imagen ? (
               <Foto
                 src={proyecto.imagen}
-                alt={proyecto.nombre}
+                alt={proyecto.imagenAlt ?? proyecto.nombre}
                 proporcion="5 / 4"
                 tamanos="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 33vw"
               />
@@ -267,8 +272,14 @@ function SeccionProyectos() {
               )}
             </div>
           </article>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="vacio">
+          <h3>Todavía no hay proyectos publicados.</h3>
+          <p>Los proyectos aparecerán aquí cuando se publiquen desde el CRM.</p>
+        </div>
+      )}
     </section>
   );
 }

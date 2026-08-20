@@ -4,8 +4,9 @@ Plataforma espejo de ONUDI Costa Rica: explica qué hace la organización en el
 país, cómo se organiza su cooperación y cómo esa cooperación se convierte en
 proyectos, plataformas, redes y oportunidades.
 
-Proyecto **Next.js (App Router)**. Sin base de datos, sin servicios pagos y sin
-variables de entorno: todo el contenido vive en archivos del repositorio.
+Proyecto **Next.js (App Router)**. Las fichas publicadas de proyectos se leen
+desde el CRM de ONUDI; el resto del contenido continúa en archivos del
+repositorio. No requiere servicios pagos adicionales.
 
 ---
 
@@ -18,14 +19,24 @@ Todo el texto está en `app/data/`. No hace falta tocar los componentes.
 | `app/data/programa-pais.ts` | ¿Quiénes somos?, ODS 9, dónde se refleja el trabajo y la ruta de la cooperación |
 | `app/data/matriz.ts` | Las Rutas del Programa País: componentes, ejes, personajes, las 16 historias y el cierre |
 | `app/data/carrusel.ts` | Fotografías del carrusel del inicio |
-| `app/data/proyectos.ts` | Los cinco proyectos, con sus siete secciones cada uno |
+| `app/data/proyectos.ts` | Respaldo de los cinco proyectos originales durante la migración al CRM |
 | `app/data/recursos.ts` | Plataformas, redes y oportunidades |
 
-### Agregar un proyecto
+### Administrar proyectos
 
-Se copia un bloque de `app/data/proyectos.ts` y se cambian los datos. El `slug`
-define la URL: `/proyectos/mi-slug`. La tarjeta del home y la página completa se
-generan solas.
+Los proyectos se crean y editan en **Página web → Proyectos** dentro del CRM.
+Solo una ficha publicada reemplaza su versión local. Mientras siga como
+borrador, el sitio conserva la versión anterior para que el contenido no
+desaparezca durante la migración.
+
+El `slug` define la URL (`/proyectos/mi-slug`) y queda estable después del
+primer guardado. La tarjeta del inicio y la página completa se generan solas.
+El sitio consulta el CRM cada minuto, por lo que un cambio publicado puede
+tardar hasta 60 segundos en aparecer.
+
+La URL del CRM tiene como valor predeterminado
+`https://onudi-eventos-crm.vercel.app`. Para usar otra instalación se puede
+definir la variable de servidor `ONUDI_CRM_URL` en Vercel.
 
 Cada proyecto lleva dos imágenes: `imagen` es la tarjeta del inicio, en
 formato 5:4, y `banner` es la franja horizontal que encabeza su página.
