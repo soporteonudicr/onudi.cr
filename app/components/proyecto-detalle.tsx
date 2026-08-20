@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Proyecto } from "../data/proyectos";
+import { AlInicio } from "./al-inicio";
 import { PieDePagina } from "./pie";
 import {
   EnPreparacion,
@@ -25,6 +26,8 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
 
   return (
     <>
+      <AlInicio />
+
       <header className="encabezado">
         <Link href="/" className="encabezado__marca" aria-label="ONUDI Costa Rica · Inicio">
           <Marca alto={34} />

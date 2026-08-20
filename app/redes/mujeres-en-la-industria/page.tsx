@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { AlInicio } from "../../components/al-inicio";
 import { PieDePagina } from "../../components/pie";
 import { Etiqueta, Foto, IconoExterno, IconoFlechaAtras, Marca } from "../../components/ui";
 import { bloques, lineas, red, sumarse } from "../../data/mujeres-industria";
@@ -16,6 +17,8 @@ export default function RedMujeres() {
 
   return (
     <>
+      <AlInicio />
+
       <header className="encabezado">
         <Link href="/" className="encabezado__marca" aria-label="ONUDI Costa Rica · Inicio">
           <Marca alto={34} />
