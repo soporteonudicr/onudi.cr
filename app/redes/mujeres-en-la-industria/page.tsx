@@ -58,8 +58,8 @@ export default function RedMujeres() {
           if (bloque.disposicion === "apilado") {
             return (
               <section className="red-mujeres__bloque red-mujeres__bloque--apilado" key={bloque.id}>
-                {imagen}
                 {texto}
+                {imagen}
               </section>
             );
           }
