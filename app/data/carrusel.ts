@@ -6,5 +6,4 @@ export const fotosInicio = [
   { src: "/imagenes/carrusel/04.jpg", alt: "Personas trabajando en una instalación productiva" },
   { src: "/imagenes/carrusel/05.jpg", alt: "Técnica trabajando en un laboratorio" },
   { src: "/imagenes/carrusel/06.jpg", alt: "Especialista frente a un equipo de innovación" },
-  { src: "/imagenes/carrusel/07.jpg", alt: "Productor y técnica en una finca agrícola" },
 ];

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ProgramaPais, QuienesSomos } from "./components/contenido-ventanas";
 import { PieDePagina } from "./components/pie";
+import { PortadaVideo } from "./components/portada-video";
 import {
   EnPreparacion,
   Espacio,
@@ -31,7 +32,8 @@ export function Inicio() {
       <Encabezado onConocerOnudi={() => setVentana("quienes-somos")} />
 
       <main id="inicio">
-        <Hero onConocerOnudi={() => setVentana("quienes-somos")} />
+        <PortadaVideo titulo="Desarrollo industrial para una Costa Rica más competitiva, inclusiva y sostenible." />
+        <Presentacion onConocerOnudi={() => setVentana("quienes-somos")} />
 
         <div className="hilo">
           <SeccionProgramaPais onAbrir={() => setVentana("programa-pais")} />
@@ -90,12 +92,11 @@ function Encabezado({ onConocerOnudi }: { onConocerOnudi: () => void }) {
 
 /* ── Hero ────────────────────────────────────────────────────── */
 
-function Hero({ onConocerOnudi }: { onConocerOnudi: () => void }) {
+function Presentacion({ onConocerOnudi }: { onConocerOnudi: () => void }) {
   return (
     <section className="hero">
       <div className="hero__texto">
         <div className="hero__columna">
-          <h1>Desarrollo industrial para una Costa Rica más competitiva, inclusiva y sostenible.</h1>
           <p className="hero__destacado">
             ONUDI es la agencia especializada de Naciones Unidas que promueve el desarrollo
             industrial inclusivo y sostenible, y su mandato contribuye de manera central al ODS 9:
