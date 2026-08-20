@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function RedMujeres() {
+  const [primero, ...resto] = bloques;
+
   return (
     <>
       <header className="encabezado">
@@ -26,16 +28,33 @@ export default function RedMujeres() {
       </header>
 
       <main className="red-mujeres">
-        <header className="red-mujeres__cabecera">
-          <Etiqueta>Red</Etiqueta>
-          <h1>{red.nombre}</h1>
-          <p>
-            Un espacio para conectar y visibilizar la participación de mujeres en los sectores
-            productivos y en las conversaciones sobre el futuro de la industria.
-          </p>
+        {/* La cabecera comparte fila con la imagen del primer bloque; el
+            texto de ese bloque baja completo, a todo el ancho. */}
+        <header className="red-mujeres__intro">
+          <div className="red-mujeres__intro-texto">
+            <Etiqueta>Red</Etiqueta>
+            <h1>{red.nombre}</h1>
+            <p>
+              Un espacio para conectar y visibilizar la participación de mujeres en los sectores
+              productivos y en las conversaciones sobre el futuro de la industria.
+            </p>
+          </div>
+          <Image
+            src={primero.imagen}
+            alt=""
+            width={1200}
+            height={929}
+            priority
+            sizes="(max-width: 900px) 100vw, 55vw"
+          />
         </header>
 
-        {bloques.map((bloque, indice) => {
+        <section className="red-mujeres__declaracion">
+          <h2>{primero.titulo}</h2>
+          {primero.texto && <p>{primero.texto}</p>}
+        </section>
+
+        {resto.map((bloque) => {
           const texto = (
             <div className="red-mujeres__texto">
               {bloque.etiqueta && <Etiqueta>{bloque.etiqueta}</Etiqueta>}
@@ -50,7 +69,6 @@ export default function RedMujeres() {
               alt=""
               width={1200}
               height={960}
-              priority={indice === 0}
               sizes={bloque.disposicion === "apilado" ? "100vw" : "(max-width: 900px) 100vw, 55vw"}
             />
           );

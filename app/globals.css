@@ -880,21 +880,60 @@ dd {
   padding: 0 var(--margen) clamp(48px, 6vw, 80px);
 }
 
-.red-mujeres__cabecera {
-  padding: clamp(36px, 5vw, 60px) 0 clamp(24px, 3vw, 36px);
+/* Cabecera: título a la izquierda, imagen del primer bloque a la derecha. */
+.red-mujeres__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 3.4vw, 48px);
+  align-items: center;
+  padding-top: clamp(28px, 4vw, 52px);
 }
 
-.red-mujeres__cabecera h1 {
-  max-width: 16ch;
-  font-size: clamp(2.2rem, 5.4vw, 4rem);
+.red-mujeres__intro img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.red-mujeres__intro .etiqueta {
+  color: var(--azul-medio);
+}
+
+.red-mujeres__intro h1 {
+  max-width: 13ch;
+  font-size: clamp(2.2rem, 4.6vw, 3.5rem);
   letter-spacing: -0.042em;
   line-height: 0.99;
 }
 
-.red-mujeres__cabecera p {
-  max-width: 52ch;
+.red-mujeres__intro-texto p {
+  max-width: 44ch;
   margin: 20px 0 0;
   color: var(--azul-medio);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* El texto del primer bloque, a todo el ancho y en azul. */
+.red-mujeres__declaracion {
+  margin-top: clamp(18px, 2.6vw, 32px);
+}
+
+.red-mujeres__declaracion h2 {
+  color: var(--azul);
+  font-size: clamp(1.3125rem, 2.3vw, 1.8125rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+}
+
+.red-mujeres__declaracion p {
+  margin: 6px 0 0;
+  color: var(--azul);
+  font-size: clamp(1.125rem, 1.9vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
 }
 
 /* Las fotografías van sin caja ni fondo: la ilustración ya trae el suyo. */
@@ -2279,6 +2318,7 @@ dd {
   .cabecera,
   .doc__portada--doble,
   .sumarse,
+  .red-mujeres__intro,
   .red-mujeres__bloque,
   .red-mujeres__bloque--izquierda {
     grid-template-columns: minmax(0, 1fr);
