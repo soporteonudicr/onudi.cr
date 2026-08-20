@@ -26,17 +26,6 @@ export default function RedMujeres() {
       </header>
 
       <main className="red-mujeres">
-        <div className="red-mujeres__portada">
-          <Image
-            src={red.portada}
-            alt={red.nombre}
-            width={1400}
-            height={1211}
-            priority
-            sizes="100vw"
-          />
-        </div>
-
         <header className="red-mujeres__cabecera">
           <Etiqueta>Red</Etiqueta>
           <h1>{red.nombre}</h1>
