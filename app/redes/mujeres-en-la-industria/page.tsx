@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PieDePagina } from "../../components/pie";
-import {
-  EnPreparacion,
-  Espacio,
-  Etiqueta,
-  Foto,
-  IconoExterno,
-  IconoFlechaAtras,
-  Marca,
-} from "../../components/ui";
-import { bloques, cierre, lineas, red, sumarse } from "../../data/mujeres-industria";
+import { Etiqueta, Foto, IconoExterno, IconoFlechaAtras, Marca } from "../../components/ui";
+import { bloques, lineas, red, sumarse } from "../../data/mujeres-industria";
 
 export const metadata: Metadata = {
   title: "Red de Mujeres en la Industria | ONUDI Costa Rica",
@@ -33,17 +26,6 @@ export default function RedMujeres() {
       </header>
 
       <main className="red-mujeres">
-        <div className="red-mujeres__portada">
-          <Foto
-            src={red.portada}
-            alt={red.nombre}
-            proporcion="5 / 4"
-            encaje="contain"
-            tamanos="100vw"
-            prioridad
-          />
-        </div>
-
         <header className="red-mujeres__cabecera">
           <Etiqueta>Red</Etiqueta>
           <h1>{red.nombre}</h1>
@@ -53,25 +35,45 @@ export default function RedMujeres() {
           </p>
         </header>
 
-        {bloques.map((bloque) => (
-          <section
-            className={`duo${bloque.lado === "izquierda" ? " duo--invertido" : ""} red-mujeres__bloque`}
-            key={bloque.id}
-          >
-            <div className="duo__texto">
+        {bloques.map((bloque, indice) => {
+          const texto = (
+            <div className="red-mujeres__texto">
               {bloque.etiqueta && <Etiqueta>{bloque.etiqueta}</Etiqueta>}
               <h2>{bloque.titulo}</h2>
               {bloque.texto && <p>{bloque.texto}</p>}
             </div>
-            <Foto
+          );
+
+          const imagen = (
+            <Image
               src={bloque.imagen}
               alt=""
-              proporcion="5 / 4"
-              encaje="contain"
-              tamanos="(max-width: 900px) 100vw, 48vw"
+              width={1200}
+              height={960}
+              priority={indice === 0}
+              sizes={bloque.disposicion === "apilado" ? "100vw" : "(max-width: 900px) 100vw, 55vw"}
             />
-          </section>
-        ))}
+          );
+
+          if (bloque.disposicion === "apilado") {
+            return (
+              <section className="red-mujeres__bloque red-mujeres__bloque--apilado" key={bloque.id}>
+                {imagen}
+                {texto}
+              </section>
+            );
+          }
+
+          return (
+            <section
+              className={`red-mujeres__bloque red-mujeres__bloque--${bloque.disposicion}`}
+              key={bloque.id}
+            >
+              {texto}
+              {imagen}
+            </section>
+          );
+        })}
 
         <section className="red-mujeres__lineas">
           <Etiqueta>Qué hace la red</Etiqueta>
@@ -79,20 +81,15 @@ export default function RedMujeres() {
           <div className="rejilla rejilla--dos">
             {lineas.map((linea) => (
               <article className="tarjeta" key={linea.titulo}>
-                {linea.imagen ? (
-                  <Foto
-                    src={linea.imagen}
-                    alt=""
-                    proporcion="5 / 4"
-                    tamanos="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 33vw"
-                  />
-                ) : (
-                  <Espacio proporcion="5 / 4" nota={`Fotografía · ${linea.titulo}`} />
-                )}
+                <Foto
+                  src={linea.imagen ?? ""}
+                  alt=""
+                  proporcion="5 / 4"
+                  tamanos="(max-width: 900px) 100vw, 46vw"
+                />
                 <div className="tarjeta__cuerpo">
                   <h3>{linea.titulo}</h3>
                   <p className="tarjeta__resumen">{linea.texto}</p>
-                  {!linea.imagen && <EnPreparacion>Fotografía pendiente</EnPreparacion>}
                 </div>
               </article>
             ))}
@@ -109,26 +106,12 @@ export default function RedMujeres() {
               <IconoExterno />
             </a>
           </div>
-          <Foto
+          <Image
             src={sumarse.imagen}
             alt=""
-            proporcion="5 / 4"
-            encaje="contain"
-            tamanos="(max-width: 900px) 100vw, 48vw"
-          />
-        </section>
-
-        <section className="duo red-mujeres__bloque">
-          <div className="duo__texto">
-            <h2>{cierre.titulo}</h2>
-            <p>{cierre.texto}</p>
-          </div>
-          <Foto
-            src={cierre.imagen}
-            alt=""
-            proporcion="5 / 4"
-            encaje="contain"
-            tamanos="(max-width: 900px) 100vw, 48vw"
+            width={1000}
+            height={961}
+            sizes="(max-width: 900px) 100vw, 48vw"
           />
         </section>
       </main>

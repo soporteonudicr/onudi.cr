@@ -16,8 +16,12 @@ export type Bloque = {
   titulo: string;
   texto?: string;
   imagen: string;
-  /** De qué lado va la fotografía. */
-  lado: "izquierda" | "derecha";
+  /**
+   * Cómo se acomodan texto e imagen:
+   * "derecha" e "izquierda" son a dos columnas; "apilado" pone la imagen
+   * arriba y el texto debajo, a todo el ancho.
+   */
+  disposicion: "derecha" | "izquierda" | "apilado";
 };
 
 export const bloques: Bloque[] = [
@@ -26,21 +30,21 @@ export const bloques: Bloque[] = [
     titulo: "La industria es uno de los motores más importantes del desarrollo económico.",
     texto: "Es un espacio donde se generan innovación, empleo y nuevas oportunidades para los países.",
     imagen: "/imagenes/mujeres/industria-motor.jpg",
-    lado: "derecha",
+    disposicion: "derecha",
   },
   {
     id: "barreras",
     etiqueta: "Pero las mujeres aún enfrentan barreras",
     titulo: "En el mundo de la investigación científica, solo el 28 % son mujeres.",
     imagen: "/imagenes/mujeres/barreras-ciencia.jpg",
-    lado: "izquierda",
+    disposicion: "apilado",
   },
   {
     id: "manufactura",
     titulo:
       "A nivel mundial, las mujeres representan solo el 27 % del empleo en el sector manufacturero.",
     imagen: "/imagenes/mujeres/empleo-manufactura.jpg",
-    lado: "izquierda",
+    disposicion: "apilado",
   },
   {
     id: "participacion",
@@ -49,14 +53,14 @@ export const bloques: Bloque[] = [
     texto:
       "También es una estrategia clave para fortalecer la innovación y la competitividad.",
     imagen: "/imagenes/mujeres/participacion.jpg",
-    lado: "derecha",
+    disposicion: "izquierda",
   },
   {
     id: "costa-rica",
     titulo: "En Costa Rica queremos que esta conmemoración se traduzca en acciones concretas.",
     texto: "Por eso hoy presentamos la Red de Mujeres en la Industria.",
     imagen: "/imagenes/mujeres/publicacion.jpg",
-    lado: "derecha",
+    disposicion: "derecha",
   },
 ];
 
@@ -88,6 +92,7 @@ export const lineas: Linea[] = [
     titulo: "Visibilidad del liderazgo femenino",
     texto:
       "Iniciativas de comunicación que destaquen el trabajo y los logros de mujeres en la industria.",
+    imagen: "/imagenes/mujeres/visibilidad.jpg",
   },
 ];
 
@@ -96,12 +101,5 @@ export const sumarse = {
   texto: "Esta red crecerá a través de la participación de todas ustedes.",
   detalle: "Todo a través de nuestro canal de WhatsApp.",
   boton: "Unirme al canal",
-  imagen: "/imagenes/mujeres/whatsapp.jpg",
-};
-
-export const cierre = {
-  titulo: "Hoy damos el primer paso.",
-  texto:
-    "Esperamos que esta red crezca, se fortalezca y permita abrir nuevas oportunidades para muchas más mujeres.",
-  imagen: "/imagenes/mujeres/publicacion.jpg",
+  imagen: "/imagenes/mujeres/whatsapp.png",
 };

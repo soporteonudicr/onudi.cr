@@ -880,12 +880,8 @@ dd {
   padding: 0 var(--margen) clamp(56px, 8vw, 100px);
 }
 
-.red-mujeres__portada {
-  margin-top: 22px;
-}
-
 .red-mujeres__cabecera {
-  padding: clamp(36px, 5vw, 60px) 0 clamp(30px, 4vw, 48px);
+  padding: clamp(40px, 6vw, 76px) 0 clamp(30px, 4vw, 48px);
 }
 
 .red-mujeres__cabecera h1 {
@@ -901,20 +897,64 @@ dd {
   color: var(--azul-medio);
 }
 
+/* Las fotografías van sin caja ni fondo: la ilustración ya trae el suyo. */
 .red-mujeres__bloque {
-  margin-top: clamp(44px, 6vw, 76px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(26px, 4vw, 56px);
+  align-items: center;
+  margin-top: clamp(48px, 7vw, 88px);
 }
 
-.red-mujeres__bloque h2 {
+.red-mujeres__bloque img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.red-mujeres__bloque--izquierda .red-mujeres__texto {
+  order: 2;
+}
+
+.red-mujeres__bloque--izquierda {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+}
+
+.red-mujeres__bloque--apilado {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 34px);
+  justify-items: center;
+}
+
+.red-mujeres__bloque--apilado .red-mujeres__texto {
+  max-width: 62ch;
+  text-align: center;
+}
+
+.red-mujeres__bloque--apilado img {
+  max-width: 900px;
+}
+
+.red-mujeres__texto h2 {
   max-width: 20ch;
   color: var(--azul);
   font-size: clamp(1.5rem, 3vw, 2.375rem);
 }
 
-.red-mujeres__bloque p {
+.red-mujeres__bloque--apilado .red-mujeres__texto h2 {
+  max-width: 28ch;
+  margin: 0 auto;
+}
+
+.red-mujeres__texto p {
   max-width: 44ch;
   margin: 18px 0 0;
   color: var(--azul-medio);
+}
+
+.red-mujeres__bloque--apilado .red-mujeres__texto p {
+  max-width: 56ch;
+  margin: 18px auto 0;
 }
 
 .red-mujeres__lineas {
@@ -950,6 +990,12 @@ dd {
   max-width: 40ch;
   margin: 16px 0 28px;
   color: rgba(255, 255, 255, 0.9);
+}
+
+.sumarse img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ── Oportunidades ───────────────────────────────────────────── */
@@ -1225,6 +1271,10 @@ dd {
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
   gap: clamp(26px, 4vw, 56px);
   align-items: center;
+}
+
+.doc__portada--azul h1 {
+  color: var(--azul);
 }
 
 .doc__portada h1 {
@@ -2222,8 +2272,14 @@ dd {
 
   .cabecera,
   .doc__portada--doble,
-  .sumarse {
+  .sumarse,
+  .red-mujeres__bloque,
+  .red-mujeres__bloque--izquierda {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .red-mujeres__bloque--izquierda .red-mujeres__texto {
+    order: 0;
   }
 
   .doc__portada--doble .carrusel {

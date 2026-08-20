@@ -27,7 +27,7 @@ export function Matriz() {
 
   return (
     <article className="doc">
-      <header className="doc__portada doc__portada--doble">
+      <header className="doc__portada doc__portada--doble doc__portada--azul">
         <div>
           <Etiqueta>{entrada.etiqueta}</Etiqueta>
           <h1>{entrada.titulo}</h1>

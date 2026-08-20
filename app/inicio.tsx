@@ -292,7 +292,7 @@ function SeccionPlataformas() {
               <Foto
                 src={plataforma.imagen}
                 alt={plataforma.nombre}
-                proporcion="5 / 4"
+                proporcion="4 / 5"
                 tamanos="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 33vw"
               />
             ) : (
