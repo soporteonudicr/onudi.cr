@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { fotosInicio } from "../data/carrusel";
 import { dondeSeRefleja, ods9, quienesSomos } from "../data/programa-pais";
+import { Carrusel } from "./carrusel";
 import { Matriz } from "./matriz";
 import { Etiqueta, IconoFlecha } from "./ui";
 
@@ -10,14 +12,17 @@ import { Etiqueta, IconoFlecha } from "./ui";
 export function QuienesSomos({ onVerProgramaPais }: { onVerProgramaPais: () => void }) {
   return (
     <article className="doc">
-      <header className="doc__portada">
-        <Etiqueta>Quiénes somos</Etiqueta>
-        <h1>{quienesSomos.titulo}</h1>
-        {quienesSomos.texto.map((parrafo) => (
-          <p className="doc__lead" key={parrafo}>
-            {parrafo}
-          </p>
-        ))}
+      <header className="doc__portada doc__portada--doble">
+        <div>
+          <Etiqueta>Quiénes somos</Etiqueta>
+          <h1>{quienesSomos.titulo}</h1>
+          {quienesSomos.texto.map((parrafo) => (
+            <p className="doc__lead" key={parrafo}>
+              {parrafo}
+            </p>
+          ))}
+        </div>
+        <Carrusel imagenes={fotosInicio} />
       </header>
 
       <section className="ods9">

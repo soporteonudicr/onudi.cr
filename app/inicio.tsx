@@ -20,7 +20,15 @@ import { Ventana } from "./components/ventana";
 import { fotosInicio } from "./data/carrusel";
 import { programaPais, rutaCooperacion } from "./data/programa-pais";
 import { proyectos } from "./data/proyectos";
-import { artesSeccion, oportunidades, plataformas, publicosOportunidad, redes } from "./data/recursos";
+import {
+  artesSeccion,
+  masHerramientas,
+  oportunidades,
+  plataformas,
+  publicosOportunidad,
+  redes,
+  registroInteres,
+} from "./data/recursos";
 
 type VentanaAbierta = "quienes-somos" | "programa-pais" | null;
 
@@ -277,29 +285,51 @@ function SeccionPlataformas() {
         imagen={artesSeccion.plataformas}
       />
 
-      {plataformas.map((plataforma) => (
-        <div className="duo" key={plataforma.nombre}>
-          <div className="duo__texto">
-            <h3>{plataforma.nombre}</h3>
-            <p>{plataforma.texto}</p>
-            <a className="boton boton--azul" href={plataforma.enlace} target="_blank" rel="noreferrer">
-              {plataforma.boton}
+      <div className="rejilla">
+        {plataformas.map((plataforma) => (
+          <article className="tarjeta" key={plataforma.nombre}>
+            {plataforma.imagen ? (
+              <Foto
+                src={plataforma.imagen}
+                alt={plataforma.nombre}
+                proporcion="5 / 4"
+                tamanos="(max-width: 720px) 100vw, (max-width: 900px) 50vw, 33vw"
+              />
+            ) : (
+              <Espacio proporcion="5 / 4" nota={`Imagen · ${plataforma.nombre}`} />
+            )}
+            <div className="tarjeta__cuerpo">
+              <h3>{plataforma.nombre}</h3>
+              <p className="tarjeta__resumen">{plataforma.texto}</p>
+              <a
+                className="tarjeta__enlace"
+                href={plataforma.enlace}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {plataforma.boton}
+                <IconoExterno />
+              </a>
+            </div>
+          </article>
+        ))}
+
+        <article className="tarjeta tarjeta--celeste">
+          <div className="tarjeta__cuerpo">
+            <h3>{masHerramientas.titulo}</h3>
+            <p className="tarjeta__resumen">{masHerramientas.texto}</p>
+            <a
+              className="tarjeta__enlace"
+              href={masHerramientas.enlace}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {masHerramientas.boton}
               <IconoExterno />
             </a>
           </div>
-          {plataforma.imagen ? (
-            <Foto
-              src={plataforma.imagen}
-              alt={plataforma.nombre}
-              proporcion="16 / 9"
-              tono="celeste"
-              tamanos="(max-width: 900px) 100vw, 48vw"
-            />
-          ) : (
-            <Espacio proporcion="16 / 9" nota={`Imagen · ${plataforma.nombre}`} />
-          )}
-        </div>
-      ))}
+        </article>
+      </div>
     </section>
   );
 }
@@ -322,10 +352,26 @@ function SeccionRedes() {
             <h3>{red.nombre}</h3>
             <p>{red.texto}</p>
             <div className="duo__acciones">
-              {red.enlaces.map((enlace) =>
-                enlace.url ? (
+              {red.enlaces.map((enlace) => {
+                if (!enlace.url) {
+                  return (
+                    <span className="boton boton--pendiente" key={enlace.etiqueta}>
+                      {enlace.etiqueta}
+                      <em>enlace pendiente</em>
+                    </span>
+                  );
+                }
+                if (enlace.externo === false) {
+                  return (
+                    <Link className="boton boton--azul" key={enlace.etiqueta} href={enlace.url}>
+                      {enlace.etiqueta}
+                      <IconoFlecha />
+                    </Link>
+                  );
+                }
+                return (
                   <a
-                    className="boton boton--azul"
+                    className="boton boton--linea"
                     key={enlace.etiqueta}
                     href={enlace.url}
                     target="_blank"
@@ -334,13 +380,8 @@ function SeccionRedes() {
                     {enlace.etiqueta}
                     <IconoExterno />
                   </a>
-                ) : (
-                  <span className="boton boton--pendiente" key={enlace.etiqueta}>
-                    {enlace.etiqueta}
-                    <em>enlace pendiente</em>
-                  </span>
-                ),
-              )}
+                );
+              })}
             </div>
           </div>
           {red.imagen ? (
@@ -412,6 +453,22 @@ function SeccionOportunidades() {
           ))}
         </div>
       )}
+
+      <div className="interes">
+        <div className="interes__texto">
+          <h3>{registroInteres.titulo}</h3>
+          <p>{registroInteres.texto}</p>
+        </div>
+        <a
+          className="boton boton--azul"
+          href={registroInteres.enlace}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {registroInteres.boton}
+          <IconoExterno />
+        </a>
+      </div>
     </section>
   );
 }

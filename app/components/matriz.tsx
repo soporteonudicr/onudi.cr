@@ -164,16 +164,12 @@ export function Matriz() {
 
       <section className="cierre-matriz">
         <div className="cierre-matriz__interior">
-          <div className="cierre-matriz__columnas">
-            <div>
-              <Etiqueta>Cómo termina</Etiqueta>
-              <h2>{cierre.titulo}</h2>
-            </div>
-            <div className="cierre-matriz__texto">
-              {cierre.parrafos.map((parrafo) => (
-                <p key={parrafo}>{parrafo}</p>
-              ))}
-            </div>
+          <Etiqueta tono="blanco">Cómo termina</Etiqueta>
+          <h2>{cierre.titulo}</h2>
+          <div className="cierre-matriz__texto">
+            {cierre.parrafos.map((parrafo) => (
+              <p key={parrafo}>{parrafo}</p>
+            ))}
           </div>
           <p className="cierre-matriz__remate">{cierre.remate}</p>
         </div>

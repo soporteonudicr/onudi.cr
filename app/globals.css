@@ -748,6 +748,10 @@ dd {
   gap: clamp(20px, 2.6vw, 32px);
 }
 
+.rejilla--dos {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .tarjeta {
   display: flex;
   flex-direction: column;
@@ -825,6 +829,127 @@ dd {
   color: var(--azul-medio);
   font-size: 0.875rem;
   font-style: italic;
+}
+
+.tarjeta--celeste {
+  justify-content: center;
+  padding: clamp(26px, 3vw, 36px);
+  background: var(--celeste);
+  border-radius: var(--radio);
+}
+
+.tarjeta--celeste .tarjeta__cuerpo {
+  padding-top: 0;
+}
+
+.tarjeta--celeste .tarjeta__enlace {
+  border-top-color: rgba(10, 43, 60, 0.16);
+}
+
+/* ── Registro de interés ─────────────────────────────────────── */
+
+.interes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(28px, 4vw, 40px);
+  padding: clamp(26px, 3.4vw, 40px);
+  background: var(--celeste-suave);
+  border: 1px solid var(--linea-azul);
+  border-radius: var(--radio);
+}
+
+.interes__texto h3 {
+  font-size: 1.25rem;
+}
+
+.interes__texto p {
+  max-width: 52ch;
+  margin: 10px 0 0;
+  color: var(--azul-medio);
+  font-size: 0.9375rem;
+}
+
+/* ── Red de Mujeres en la Industria ──────────────────────────── */
+
+.red-mujeres {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 0 var(--margen) clamp(56px, 8vw, 100px);
+}
+
+.red-mujeres__portada {
+  margin-top: 22px;
+}
+
+.red-mujeres__cabecera {
+  padding: clamp(36px, 5vw, 60px) 0 clamp(30px, 4vw, 48px);
+}
+
+.red-mujeres__cabecera h1 {
+  max-width: 16ch;
+  font-size: clamp(2.2rem, 5.4vw, 4rem);
+  letter-spacing: -0.042em;
+  line-height: 0.99;
+}
+
+.red-mujeres__cabecera p {
+  max-width: 52ch;
+  margin: 20px 0 0;
+  color: var(--azul-medio);
+}
+
+.red-mujeres__bloque {
+  margin-top: clamp(44px, 6vw, 76px);
+}
+
+.red-mujeres__bloque h2 {
+  max-width: 20ch;
+  color: var(--azul);
+  font-size: clamp(1.5rem, 3vw, 2.375rem);
+}
+
+.red-mujeres__bloque p {
+  max-width: 44ch;
+  margin: 18px 0 0;
+  color: var(--azul-medio);
+}
+
+.red-mujeres__lineas {
+  margin-top: clamp(52px, 7vw, 88px);
+  padding-top: clamp(40px, 5vw, 60px);
+  border-top: 1px solid var(--linea);
+}
+
+.red-mujeres__lineas h2 {
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  font-size: clamp(1.6rem, 3vw, 2.375rem);
+}
+
+.sumarse {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(26px, 4vw, 56px);
+  align-items: center;
+  margin-top: clamp(52px, 7vw, 88px);
+  padding: clamp(30px, 4vw, 56px);
+  background: var(--azul);
+  border-radius: var(--radio);
+  color: var(--blanco);
+}
+
+.sumarse h2 {
+  max-width: 18ch;
+  color: var(--blanco);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.sumarse p {
+  max-width: 40ch;
+  margin: 16px 0 28px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ── Oportunidades ───────────────────────────────────────────── */
@@ -1097,7 +1222,7 @@ dd {
 
 .doc__portada--doble {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
   gap: clamp(26px, 4vw, 56px);
   align-items: center;
 }
@@ -1435,7 +1560,8 @@ dd {
 
 .cierre-matriz {
   margin-top: clamp(52px, 7vw, 84px);
-  background: var(--celeste);
+  background: var(--azul);
+  color: var(--blanco);
 }
 
 .cierre-matriz__interior {
@@ -1444,20 +1570,20 @@ dd {
   padding: clamp(44px, 6vw, 76px) var(--margen);
 }
 
-.cierre-matriz__columnas {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(26px, 4vw, 56px);
+.cierre-matriz h2 {
+  max-width: 20ch;
+  color: var(--blanco);
+  font-size: clamp(1.85rem, 3.6vw, 2.95rem);
 }
 
-.cierre-matriz h2 {
-  max-width: 14ch;
-  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+.cierre-matriz__texto {
+  margin-top: 26px;
 }
 
 .cierre-matriz__texto p {
+  max-width: 68ch;
   margin: 0 0 14px;
-  color: var(--azul-medio);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .cierre-matriz__texto p:last-child {
@@ -1465,10 +1591,11 @@ dd {
 }
 
 .cierre-matriz__remate {
+  max-width: 52ch;
   margin: clamp(30px, 4vw, 46px) 0 0;
   padding-left: 22px;
-  border-left: 3px solid var(--azul);
-  color: var(--azul-hondo);
+  border-left: 3px solid rgba(255, 255, 255, 0.6);
+  color: var(--blanco);
   font-family: var(--tipo-titulo);
   font-size: clamp(1.25rem, 2.6vw, 1.875rem);
   font-weight: 600;
@@ -2095,7 +2222,7 @@ dd {
 
   .cabecera,
   .doc__portada--doble,
-  .cierre-matriz__columnas {
+  .sumarse {
     grid-template-columns: minmax(0, 1fr);
   }
 
