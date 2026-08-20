@@ -27,6 +27,13 @@ Se copia un bloque de `app/data/proyectos.ts` y se cambian los datos. El `slug`
 define la URL: `/proyectos/mi-slug`. La tarjeta del home y la página completa se
 generan solas.
 
+Cada proyecto lleva dos imágenes: `imagen` es la tarjeta del inicio, en
+formato 5:4, y `banner` es la franja horizontal que encabeza su página.
+
+`nombre` es el nombre corto, el que se ve en las tarjetas. Si además se llena
+`nombreCompleto`, ese es el que encabeza la página del proyecto. El `proposito`
+es opcional: si se deja afuera, no aparece.
+
 Un proyecto con `estado: "en-preparacion"` muestra la ficha lista pero sin
 contenido, tal como piden Costa Rica por Siempre y Conservación Internacional.
 Los campos que se dejan afuera simplemente no aparecen: si un proyecto no tiene
@@ -60,6 +67,9 @@ El resto está en `public/imagenes/`:
 | `ods9-cubo.png` | Cubo del ODS 9, dentro de ¿Quiénes somos? |
 | `refleja/01.png` … `04.png` | Iconos de ¿Dónde se refleja este trabajo? |
 | `matriz/componentes/`, `matriz/ejes/`, `matriz/personajes/`, `matriz/historias/` | Ilustraciones de las Rutas del Programa País |
+| `programa-carrusel/01.jpg` … `04.jpg` | Carrusel de la entrada a las Rutas |
+| `secciones/plataformas.jpg`, `redes.jpg`, `oportunidades.jpg` | Artes de las cabeceras de sección |
+| `proyectos/banners/<slug>.jpg` | Franja de portada de cada proyecto |
 | `programa-pais.jpg` | Sección Programa País |
 | `ruta/01-prioridad.png` … `04-proyectos.png` | Iconos de la ruta de la cooperación |
 | `proyectos/<slug>.jpg` | Tarjeta y portada de cada proyecto |

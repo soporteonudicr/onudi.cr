@@ -33,13 +33,18 @@ export type Motivo = {
 
 export type Proyecto = {
   slug: string;
+  /** Nombre corto, el que se ve en las tarjetas y en el menú. */
   nombre: string;
-  /** Frase corta de propósito, va bajo el nombre en la cabecera. */
-  proposito: string;
+  /** Nombre oficial completo. Si existe, es el que encabeza la página. */
+  nombreCompleto?: string;
+  /** Frase corta de propósito, va bajo el nombre. Se omite si no aplica. */
+  proposito?: string;
   /** Descripción recortada que se muestra en la tarjeta del home. */
   resumen: string;
-  /** Portada del proyecto, en public/imagenes/proyectos/ */
+  /** Imagen de la tarjeta del inicio, en public/imagenes/proyectos/ */
   imagen?: string;
+  /** Franja de portada de la página del proyecto, en proyectos/banners/ */
+  banner?: string;
   tags: string[];
   estado: "publicado" | "en-preparacion";
 
@@ -89,6 +94,7 @@ export const proyectos: Proyecto[] = [
   {
     slug: "cafe",
     imagen: "/imagenes/proyectos/cafe.jpg",
+    banner: "/imagenes/proyectos/banners/cafe.jpg",
     nombre: "Café de Costa Rica",
     proposito: "Trazabilidad y sostenibilidad para fortalecer su competitividad.",
     resumen:
@@ -238,6 +244,7 @@ export const proyectos: Proyecto[] = [
   {
     slug: "biometano",
     imagen: "/imagenes/proyectos/biometano.jpg",
+    banner: "/imagenes/proyectos/banners/biometano.jpg",
     nombre: "Biometano",
     proposito: "Convertir residuos en una oportunidad para la transición energética.",
     resumen:
@@ -323,6 +330,7 @@ export const proyectos: Proyecto[] = [
   {
     slug: "construccion-circular",
     imagen: "/imagenes/proyectos/construccion-circular.jpg",
+    banner: "/imagenes/proyectos/banners/construccion-circular.jpg",
     nombre: "Construcción circular",
     proposito: "Construir también es una oportunidad para transformar.",
     resumen:
@@ -399,6 +407,7 @@ export const proyectos: Proyecto[] = [
   {
     slug: "costa-rica-por-siempre",
     imagen: "/imagenes/proyectos/costa-rica-por-siempre.jpg",
+    banner: "/imagenes/proyectos/banners/costa-rica-por-siempre.jpg",
     nombre: "Costa Rica por Siempre",
     proposito: "Contenido en preparación.",
     resumen: "Contenido en preparación.",
@@ -410,6 +419,7 @@ export const proyectos: Proyecto[] = [
   {
     slug: "conservacion-internacional",
     imagen: "/imagenes/proyectos/conservacion-internacional.jpg",
+    banner: "/imagenes/proyectos/banners/conservacion-internacional.jpg",
     nombre: "Conservación Internacional",
     proposito: "Contenido en preparación.",
     resumen: "Contenido en preparación.",

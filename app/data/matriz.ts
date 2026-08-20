@@ -57,6 +57,17 @@ export const entrada = {
   instruccion: "Elegí un componente, un eje o una escena para descubrir la historia.",
 };
 
+/** Carrusel que acompaña la entrada. Una foto por componente. */
+export const fotosComponentes = [
+  { src: "/imagenes/programa-carrusel/01.jpg", alt: "Habilidades técnicas para el empleo" },
+  { src: "/imagenes/programa-carrusel/02.jpg", alt: "Energías renovables y descarbonización" },
+  { src: "/imagenes/programa-carrusel/03.jpg", alt: "Economía circular y eficiencia de recursos" },
+  {
+    src: "/imagenes/programa-carrusel/04.jpg",
+    alt: "Infraestructura de calidad, competitividad e innovación",
+  },
+];
+
 /* ── Componentes · las columnas ──────────────────────────────── */
 
 export const componentes: Componente[] = [

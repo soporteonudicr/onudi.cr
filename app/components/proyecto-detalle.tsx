@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Proyecto } from "../data/proyectos";
 import { PieDePagina } from "./pie";
@@ -5,7 +6,6 @@ import {
   EnPreparacion,
   Espacio,
   Etiqueta,
-  Foto,
   IconoExterno,
   IconoFlechaAtras,
   Marca,
@@ -39,29 +39,26 @@ export function ProyectoDetalle({ proyecto }: { proyecto: Proyecto }) {
       <main className="proyecto">
         {/* Cabecera */}
         <div className="proyecto__portada">
-          {proyecto.imagen ? (
-            <Foto
-              src={proyecto.imagen}
+          {proyecto.banner ? (
+            <Image
+              src={proyecto.banner}
               alt={proyecto.nombre}
-              proporcion="16 / 9"
-              encaje="contain"
-              tono="celeste"
-              tamanos="100vw"
-              prioridad
+              width={1600}
+              height={467}
+              priority
             />
           ) : (
             <Espacio
-              proporcion="21 / 9"
-              minAlto={320}
-              nota={`Fotografía de portada · ${proyecto.nombre} · horizontal, mínimo 2400 px`}
+              proporcion="24 / 7"
+              nota={`Franja de portada · ${proyecto.nombre} · horizontal`}
             />
           )}
         </div>
 
         <header className="proyecto__cabecera">
           <Etiqueta>Proyecto</Etiqueta>
-          <h1>{proyecto.nombre}</h1>
-          <p className="proyecto__proposito">{proyecto.proposito}</p>
+          <h1>{proyecto.nombreCompleto ?? proyecto.nombre}</h1>
+          {proyecto.proposito && <p className="proyecto__proposito">{proyecto.proposito}</p>}
           {proyecto.tags.length > 0 && (
             <ul className="proyecto__tags">
               {proyecto.tags.map((tag) => (

@@ -46,6 +46,13 @@ export const publicosOportunidad: PublicoOportunidad[] = [
   "Organizaciones",
 ];
 
+/** Arte que acompaña a cada cabecera de sección. */
+export const artesSeccion = {
+  plataformas: "/imagenes/secciones/plataformas.jpg",
+  redes: "/imagenes/secciones/redes.jpg",
+  oportunidades: "/imagenes/secciones/oportunidades.jpg",
+};
+
 export const plataformas: Plataforma[] = [
   {
     nombre: "IA Consciente ONUDI",

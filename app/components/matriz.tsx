@@ -7,10 +7,12 @@ import {
   componentes,
   ejes,
   entrada,
+  fotosComponentes,
   historiaDe,
   historias,
   personajes,
 } from "../data/matriz";
+import { Carrusel } from "./carrusel";
 import { Etiqueta, IconoCerrar } from "./ui";
 
 type Detalle =
@@ -25,14 +27,17 @@ export function Matriz() {
 
   return (
     <article className="doc">
-      <header className="doc__portada">
-        <Etiqueta>{entrada.etiqueta}</Etiqueta>
-        <h1>{entrada.titulo}</h1>
-        {entrada.parrafos.map((parrafo) => (
-          <p className="doc__lead" key={parrafo}>
-            {parrafo}
-          </p>
-        ))}
+      <header className="doc__portada doc__portada--doble">
+        <div>
+          <Etiqueta>{entrada.etiqueta}</Etiqueta>
+          <h1>{entrada.titulo}</h1>
+          {entrada.parrafos.map((parrafo) => (
+            <p className="doc__lead" key={parrafo}>
+              {parrafo}
+            </p>
+          ))}
+        </div>
+        <Carrusel imagenes={fotosComponentes} intervalo={5000} />
       </header>
 
       <section className="doc__bloque">
@@ -157,15 +162,21 @@ export function Matriz() {
         </div>
       </section>
 
-      <section className="doc__bloque cierre-matriz">
-        <Etiqueta>Cómo termina</Etiqueta>
-        <h2 className="doc__titulo">{cierre.titulo}</h2>
-        {cierre.parrafos.map((parrafo) => (
-          <p className="doc__lead" key={parrafo}>
-            {parrafo}
-          </p>
-        ))}
-        <p className="cierre-matriz__remate">{cierre.remate}</p>
+      <section className="cierre-matriz">
+        <div className="cierre-matriz__interior">
+          <div className="cierre-matriz__columnas">
+            <div>
+              <Etiqueta>Cómo termina</Etiqueta>
+              <h2>{cierre.titulo}</h2>
+            </div>
+            <div className="cierre-matriz__texto">
+              {cierre.parrafos.map((parrafo) => (
+                <p key={parrafo}>{parrafo}</p>
+              ))}
+            </div>
+          </div>
+          <p className="cierre-matriz__remate">{cierre.remate}</p>
+        </div>
       </section>
 
       <PanelDetalle detalle={detalle} onCerrar={() => setDetalle(null)} />

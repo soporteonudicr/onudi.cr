@@ -573,6 +573,25 @@ dd {
   color: var(--azul-medio);
 }
 
+.cabecera {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: clamp(26px, 4vw, 60px);
+  align-items: center;
+  margin-bottom: clamp(36px, 5vw, 60px);
+}
+
+.cabecera__texto h2 {
+  max-width: 20ch;
+  font-size: clamp(1.85rem, 3.4vw, 2.95rem);
+}
+
+.cabecera__texto p {
+  max-width: 46ch;
+  margin: 18px 0 0;
+  color: var(--azul-medio);
+}
+
 /* ── Programa País (home) ────────────────────────────────────── */
 
 .programa {
@@ -1076,6 +1095,13 @@ dd {
   padding: clamp(40px, 6vw, 78px) var(--margen) clamp(56px, 8vw, 100px);
 }
 
+.doc__portada--doble {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(26px, 4vw, 56px);
+  align-items: center;
+}
+
 .doc__portada h1 {
   max-width: 20ch;
   font-size: clamp(2.1rem, 5vw, 3.6rem);
@@ -1243,50 +1269,66 @@ dd {
 
 .matriz {
   display: grid;
-  grid-template-columns: 168px repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: 200px repeat(4, minmax(0, 1fr));
+  gap: 12px 8px;
+  align-items: center;
   margin-top: 32px;
 }
 
 .matriz__esquina {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 10px 4px;
-  color: var(--azul-medio);
-  font-family: var(--tipo-titulo);
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  padding-right: 4px;
+  text-align: right;
 }
 
 .matriz__esquina span:first-child {
-  text-align: right;
   color: var(--azul);
+  font-family: var(--tipo-titulo);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
 }
 
 .matriz__esquina span:last-child {
   color: var(--naranja);
+  font-family: var(--tipo-titulo);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .matriz__cabeza {
   display: block;
   padding: 0;
   border: 0;
-  border-radius: var(--radio);
   background: transparent;
   cursor: pointer;
   transition: transform 160ms ease;
 }
 
 .matriz__cabeza:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .matriz__cabeza img {
+  display: block;
   width: 100%;
   height: auto;
+}
+
+/* La fila de encabezados y la de ejes respiran más que las fichas */
+.matriz > .matriz__cabeza {
+  align-self: end;
+}
+
+.matriz__cabeza--eje {
+  padding-right: 6px;
 }
 
 .celda {
@@ -1391,17 +1433,47 @@ dd {
 
 /* Cierre de la experiencia */
 
+.cierre-matriz {
+  margin-top: clamp(52px, 7vw, 84px);
+  background: var(--celeste);
+}
+
+.cierre-matriz__interior {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(44px, 6vw, 76px) var(--margen);
+}
+
+.cierre-matriz__columnas {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(26px, 4vw, 56px);
+}
+
+.cierre-matriz h2 {
+  max-width: 14ch;
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+}
+
+.cierre-matriz__texto p {
+  margin: 0 0 14px;
+  color: var(--azul-medio);
+}
+
+.cierre-matriz__texto p:last-child {
+  margin-bottom: 0;
+}
+
 .cierre-matriz__remate {
-  max-width: 44ch;
-  margin: 28px 0 0;
-  padding-left: 20px;
+  margin: clamp(30px, 4vw, 46px) 0 0;
+  padding-left: 22px;
   border-left: 3px solid var(--azul);
   color: var(--azul-hondo);
   font-family: var(--tipo-titulo);
-  font-size: clamp(1.125rem, 2.1vw, 1.5rem);
+  font-size: clamp(1.25rem, 2.6vw, 1.875rem);
   font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.025em;
+  line-height: 1.32;
+  letter-spacing: -0.028em;
 }
 
 /* Panel de detalle */
@@ -1527,6 +1599,12 @@ dd {
 
 .proyecto__portada {
   margin-top: 22px;
+}
+
+.proyecto__portada img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .proyecto__cabecera {
@@ -2013,6 +2091,16 @@ dd {
 
   .elenco {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cabecera,
+  .doc__portada--doble,
+  .cierre-matriz__columnas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .doc__portada--doble .carrusel {
+    max-width: 420px;
   }
 
   /* Debajo de este ancho el cuadro completo no se lee: se apila */

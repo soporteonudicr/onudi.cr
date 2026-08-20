@@ -20,7 +20,7 @@ import { Ventana } from "./components/ventana";
 import { fotosInicio } from "./data/carrusel";
 import { programaPais, rutaCooperacion } from "./data/programa-pais";
 import { proyectos } from "./data/proyectos";
-import { oportunidades, plataformas, publicosOportunidad, redes } from "./data/recursos";
+import { artesSeccion, oportunidades, plataformas, publicosOportunidad, redes } from "./data/recursos";
 
 type VentanaAbierta = "quienes-somos" | "programa-pais" | null;
 
@@ -116,6 +116,35 @@ function Presentacion({ onConocerOnudi }: { onConocerOnudi: () => void }) {
         <Carrusel imagenes={fotosInicio} />
       </div>
     </section>
+  );
+}
+
+/* ── Cabecera de sección, con imagen a la par ────────────────── */
+
+function Cabecera({
+  etiqueta,
+  titulo,
+  texto,
+  imagen,
+}: {
+  etiqueta: string;
+  titulo: string;
+  texto: string;
+  imagen?: string;
+}) {
+  return (
+    <div className="cabecera nodo">
+      <div className="cabecera__texto">
+        <Etiqueta>{etiqueta}</Etiqueta>
+        <h2>{titulo}</h2>
+        <p>{texto}</p>
+      </div>
+      {imagen ? (
+        <Foto src={imagen} alt="" proporcion="4 / 5" tamanos="(max-width: 900px) 100vw, 40vw" />
+      ) : (
+        <Espacio proporcion="4 / 5" nota={`Imagen · ${etiqueta}`} />
+      )}
+    </div>
   );
 }
 
@@ -241,14 +270,12 @@ function SeccionProyectos() {
 function SeccionPlataformas() {
   return (
     <section className="seccion" id="plataformas">
-      <div className="seccion__cabecera nodo">
-        <Etiqueta>Plataformas</Etiqueta>
-        <h2>Herramientas para convertir conocimiento en acción.</h2>
-        <p className="seccion__lead">
-          Espacios digitales desarrollados o acompañados desde ONUDI Costa Rica para facilitar
-          información, fortalecer capacidades y acercar soluciones.
-        </p>
-      </div>
+      <Cabecera
+        etiqueta="Plataformas"
+        titulo="Herramientas para convertir conocimiento en acción."
+        texto="Espacios digitales desarrollados o acompañados desde ONUDI Costa Rica para facilitar información, fortalecer capacidades y acercar soluciones."
+        imagen={artesSeccion.plataformas}
+      />
 
       {plataformas.map((plataforma) => (
         <div className="duo" key={plataforma.nombre}>
@@ -282,14 +309,12 @@ function SeccionPlataformas() {
 function SeccionRedes() {
   return (
     <section className="seccion" id="redes">
-      <div className="seccion__cabecera nodo">
-        <Etiqueta>Redes</Etiqueta>
-        <h2>Conectar personas también genera capacidades.</h2>
-        <p className="seccion__lead">
-          Espacios que permiten compartir conocimiento, crear vínculos y acercar personas alrededor
-          de desafíos comunes.
-        </p>
-      </div>
+      <Cabecera
+        etiqueta="Redes"
+        titulo="Conectar personas también genera capacidades."
+        texto="Espacios que permiten compartir conocimiento, crear vínculos y acercar personas alrededor de desafíos comunes."
+        imagen={artesSeccion.redes}
+      />
 
       {redes.map((red) => (
         <div className="duo duo--invertido" key={red.nombre}>
@@ -339,15 +364,12 @@ function SeccionRedes() {
 function SeccionOportunidades() {
   return (
     <section className="seccion" id="oportunidades">
-      <div className="seccion__cabecera nodo">
-        <Etiqueta>Oportunidades</Etiqueta>
-        <h2>La cooperación también abre oportunidades.</h2>
-        <p className="seccion__lead">
-          Convocatorias, programas, formación, premios y oportunidades vinculadas con ONUDI que
-          pueden resultar relevantes para personas, empresas, academia, instituciones y
-          organizaciones en Costa Rica.
-        </p>
-      </div>
+      <Cabecera
+        etiqueta="Oportunidades"
+        titulo="La cooperación también abre oportunidades."
+        texto="Convocatorias, programas, formación, premios y oportunidades vinculadas con ONUDI que pueden resultar relevantes para personas, empresas, academia, instituciones y organizaciones en Costa Rica."
+        imagen={artesSeccion.oportunidades}
+      />
 
       <ul className="filtros" aria-label="Filtros de oportunidades">
         {publicosOportunidad.map((publico) => (
