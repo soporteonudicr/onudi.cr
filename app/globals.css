@@ -1266,6 +1266,12 @@ dd {
   padding: clamp(40px, 6vw, 78px) var(--margen) clamp(56px, 8vw, 100px);
 }
 
+/* El Programa País necesita el mismo ancho que el inicio: ahí viven el
+   carrusel de la entrada y el cuadro de cuatro por cuatro. */
+.doc--ancho {
+  max-width: var(--ancho);
+}
+
 .doc__portada--doble {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);

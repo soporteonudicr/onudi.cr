@@ -26,7 +26,7 @@ export function Matriz() {
   const [detalle, setDetalle] = useState<Detalle>(null);
 
   return (
-    <article className="doc">
+    <article className="doc doc--ancho">
       <header className="doc__portada doc__portada--doble doc__portada--azul">
         <div>
           <Etiqueta>{entrada.etiqueta}</Etiqueta>
